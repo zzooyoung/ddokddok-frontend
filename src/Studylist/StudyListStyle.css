@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: flex-start; /* 화면 상단에 정렬되도록 설정 */
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #f9f9f9;
 }
 
 .div-2 {
@@ -14,47 +14,32 @@
   max-width: 90%;
   padding: 20px;
   overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .component-container {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(150px, 1fr)
-  ); /* 각 요소는 최소 150px 너비를 가지며, 가능한 최대 크기로 확장됨 */
-  gap: 16px; /* 요소들 간의 간격 */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   max-width: 100%; /* 그리드 컨테이너의 최대 너비를 100%로 설정 */
   margin: 0 auto; /* 중앙 정렬을 위해 마진을 자동으로 설정 */
   box-sizing: border-box; /* 박스 크기를 포함하여 요소의 총 크기를 설정 */
 }
 
 .component {
-  background-color: #fafafa; /* 밝고 따뜻한 배경색 */
-  border: 1px solid #b0b0b0; /* 어둡고 따뜻한 테두리 색상 */
-  padding: 15px;
+  background-color: #e3f2fd; /* 밝고 따뜻한 배경색 */
+  border: 1px solid #90caf9; /* 어둡고 따뜻한 테두리 색상 */
+  padding: 10px 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
   cursor: pointer;
-  margin: 10px;
 }
 
 .component:hover {
   transform: translateY(-3px);
-}
-
-.component img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
-.component .component-text {
-  line-height: 1.5;
-  text-align: center;
-  margin-top: 10px;
-  font-size: 1.2em; /* 텍스트 사이즈 키움 */
-  font-weight: bold; /* 볼드체 처리 */
 }
 
 .divwrapper-container {
@@ -77,7 +62,7 @@
   height: 150px;
   object-fit: cover;
   border-radius: 8px; /* 윤곽선을 둥글게 처리 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 설정 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 설정 */
 }
 
 .div-wrapper .div-wrapper-text {
@@ -108,8 +93,8 @@
 
 .navigation {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
+  gap: 5px;
   margin-top: 20px;
 }
 
@@ -117,10 +102,10 @@
   background-color: #4caf50;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px; /* 크기를 줄임 */
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
+  font-size: 14px; /* 글꼴 크기를 줄임 */
+  border-radius: 3px; /* 모서리를 더 둥글게 설정 */
 }
 
 .nav-item:hover {
@@ -135,4 +120,5 @@
 .page-info {
   display: flex;
   align-items: center;
+  font-size: 14px; /* 글꼴 크기를 줄임 */
 }
