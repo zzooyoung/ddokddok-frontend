@@ -10,30 +10,82 @@ import ParticipateStudy_FinishedContent from './ParticipateStudy_FinishedContent
 import CreateStudy_PrepContent from './CreateStudy_PrepContent';
 import CreateStudy_OngoingContent from './CreateStudy_OngoingContent';
 import CreateStudy_FinishedContent from './CreateStudy_FinishedContent';
-
+import imgWithUrl from '../apis/imgWithUrl';
 
 
 
 const Mypage = () => {
+  const [nickname, setNickName] = useState('');
+  const [profile, setProfile] = useState('');
+  const [id, setId] = useState('');
   const location = useLocation();
+  const [joinList, setJoinList] = useState([]);
+  const [createList, setCreateList] = useState([]);
   const { param1 } = location.state || {};
   console.log("Parameter from previous page:", param1);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const id = sessionStorage.getItem("member_id")
+        setId(sessionStorage.getItem("id"));
         console.log("member_id" ,id);
-        const response = await axios.get("http://192.168.0.98:8080/userinfo");
+        const response = await axios.post("http://192.168.0.98:8080/userinfo",
+          {
+            member_id: id
+          }
+        );
         console.log("User info:", response.data);
+        setNickName(response.data.nickname);
+        setProfile(response.data.profile_image_url);
       } catch (error) {
         console.error("Error fetching user info:", error);
       }
     };
     fetchUserInfo();
   }, []);
+  useEffect(() => {
+    const fetchJoinStudy = async () => {
+      try {
+        console.log("member_id" ,id);
+        const response1 = await axios.post("http://localhost:8080/mypage/show_study/joined?sort=latest&page=1&perPage=20",
+          {
+            sort: "latest",
+            page: 1,
+            perPage: 10,
+            member_id: id
+          }
+        );
+        console.log("Join info:", response1.data);
+        setJoinList(response1.data);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+    fetchJoinStudy();
+  }, []);
+  useEffect(() => {
+    const fetchCreateStudy = async () => {
+      try {
+        console.log("member_id" ,id);
+        const response2 = await axios.post("http://localhost:8080/mypage/show_study/joined?sort=latest&page=1&perPage=20",
+          {
+            sort: "latest",
+            page: 1,
+            perPage: 10,
+            member_id: id
+          }
+        );
+        console.log("Create info:", response2.data);
+        setCreateList(response2.data);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+    fetchCreateStudy();
+  }, []);
 
-  const profileImageURL = "https://item.kakaocdn.net/do/a7fd7c0630f8aea8419a565fb2773bbc82f3bd8c9735553d03f6f982e10ebe70";
+
+  // const profileImageURL = "https://item.kakaocdn.net/do/a7fd7c0630f8aea8419a565fb2773bbc82f3bd8c9735553d03f6f982e10ebe70";
   const [activeCategory1, setActiveCategory1] = useState('studyAll');
   const [activeCategory2, setActiveCategory2] = useState('prep');
 
@@ -50,9 +102,9 @@ const Mypage = () => {
       {/* Profile Section */}
       <div className="profile-container">
         <h2 className="title">나의 프로필</h2>
-        <div className="user_id">nickname</div>
+        <div className="user_id">{nickname}</div>
         <div>
-          <img src={profileImageURL} alt="Profile" />
+          <img src={imgWithUrl(profile)} alt="Profile" />
         </div>
         <button className="profileEditBtn">개인정보 수정</button>
       </div>
@@ -81,9 +133,9 @@ const Mypage = () => {
           </button>
         </div>
         <div>
-          {activeCategory1 === 'studyAll' && <ParticipateStudy_StudyAllContent />}
-          {activeCategory1 === 'ongoing' && <ParticipateStudy_OngoingContent />}
-          {activeCategory1 === 'finished' && <ParticipateStudy_FinishedContent />}
+          {activeCategory1 === 'studyAll' && <ParticipateStudy_StudyAllContent param={joinList} />}
+          {activeCategory1 === 'ongoing' && <ParticipateStudy_OngoingContent param={joinList} />}
+          {activeCategory1 === 'finished' && <ParticipateStudy_FinishedContent param={joinList} />}
         </div>
       </div>
 
