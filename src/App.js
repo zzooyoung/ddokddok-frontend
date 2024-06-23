@@ -7,17 +7,13 @@ import Home from "./Home/home_main";
 import Login from "./Login/login_main";
 import Register from "./Register/register_main";
 
-
-import Studylist from './Studylist/studylist_main';
-import QnA from './QnA/qna_main';
-import Mypage from './Mypage/mypage_main';
-import CreateStudy from './CreateStudy/create_study';
-import './App.css';
-import Study from './StudyDetails/study_main';
+import Studylist from "./Studylist/studylist_main";
+import QnA from "./QnA/qna_main";
+import Mypage from "./Mypage/mypage_main";
+import CreateStudy from "./CreateStudy/create_study";
+import "./App.css";
+import Study from "./StudyDetails/study_main";
 import CheifStudyHome from "./StudyDetails/Home/CheifStudyHome";
-
-
-
 
 function App() {
   return (
@@ -33,9 +29,12 @@ function App() {
               <Route path="/studylist" element={<Studylist />} />
               <Route path="/qna" element={<QnA />} />
               <Route path="/mypage" element={<Mypage />} />
-              <Route path="/createstudy" element={<CreateStudy/>} />
-              <Route path="/study" element={<Study/>} />
-              <Route path="/StudyDetails/Home/Cheif" element={<CheifStudyHome />}/>
+              <Route path="/createstudy" element={<CreateStudy />} />
+              <Route path="/study" element={<Study />} />
+              <Route
+                path="/StudyDetails/Home/Cheif"
+                element={<CheifStudyHome />}
+              />
             </Routes>
           </div>
         </div>
