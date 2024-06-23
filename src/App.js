@@ -16,6 +16,7 @@ import Study from "./StudyDetails/study_main";
 import CheifStudyHome from "./StudyDetails/Home/CheifStudyHome";
 
 import QnaCreatePage from "./QnA/qna_create_page";
+import QnaDetailPage from "./QnA/qna_detail_page";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
                 element={<CheifStudyHome />}
               />
               <Route path="/qna/create" element={<QnaCreatePage />} />
+              <Route
+                path="/question/:question_id"
+                element={<QnaDetailPage />}
+              />
             </Routes>
           </div>
         </div>
