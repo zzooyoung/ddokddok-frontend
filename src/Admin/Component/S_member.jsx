@@ -37,53 +37,61 @@ function S_member() {
 
     fetchMemberData();
   }, []);
-
+  console.log(sessionStorage.getItem("id"));
 
   const handleAccept = async (memberId) => {
-    const memberToAccept = members.find(member => member.study_member_id === memberId);
+    const memberToAccept = members.find(member => member.member_id === memberId);
     if (memberToAccept) {
       try {
         // Send a POST request to the server to update the member status
         await axios.post(`http://192.168.0.98:8080/study/member/accept`, {
-          member_id: memberId,
-          memberId: memberId, // Adjust according to actual API requirement
+<<<<<<< Updated upstream
+          member_id: sessionStorage.getItem("id"),
+          memberId: memberId, // Make sure the field names match what your API expects
           studyId: memberToAccept.study_id, // Assuming study_id is available in the member object
+=======
+          member_id: members.member_id,
+          memberId: sessionStorage.getItem("id"), 
+          studyId: memberToAccept.study_id, 
+>>>>>>> Stashed changes
         });
-        // Update local state
+  
+        // Update local state to reflect the new status of the member
         setMembers(prevMembers => prevMembers.map(member =>
-          member.study_member_id === memberId ? { ...member, request_status: "APPROVED" } : member
+          member.member_id === memberId ? { ...member, request_status: "APPROVED" } : member
         ));
       } catch (error) {
         console.error("Error accepting member:", error);
       }
     }
   };
+  
 
-  /*
-  const handleAccept = async (memberId) => {
-    try {
-      // Send a PUT request to the server to update the member status
-      await axios.put(`http://192.168.0.98:8080/study/member/accept/${memberId}`);
-      // Update local state
-      setMembers(prevMembers => prevMembers.map(member =>
-        member.study_member_id === memberId ? { ...member, request_status: "APPROVED" } : member
-      ));
-    } catch (error) {
-      console.error("Error accepting member:", error);
-    }
-  };
-  */
 
   const handleReject = async (memberId) => {
-    try {
-      // Send a DELETE request to the server to remove the member
-      await axios.delete(`http://192.168.0.98:8080/study/member/reject/${memberId}`);
-      // Update local state
-      setMembers(prevMembers => prevMembers.filter(member => member.study_member_id !== memberId));
-    } catch (error) {
-      console.error("Error rejecting member:", error);
+    const memberToAccept = members.find(member => member.member_id === memberId);
+    if (memberToAccept) {
+      try {
+        // Send a POST request to the server to update the member status
+        await axios.post(`http://192.168.0.98:8080/study/member/refuse`, {
+          member_id: sessionStorage.getItem("id"),
+          memberId: memberId, // Make sure the field names match what your API expects
+          studyId: memberToAccept.study_id, // Assuming study_id is available in the member object
+        });
+  
+        // Update local state to reflect the new status of the member
+        setMembers(prevMembers => prevMembers.map(member =>
+          member.member_id === memberId ? { ...member, request_status: "REJECTED" } : member
+        ));
+      } catch (error) {
+        console.error("Error accepting member:", error);
+      }
     }
   };
+  
+
+
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -98,6 +106,7 @@ function S_member() {
             <th>번호</th>
             <th>이름</th>
             <th>참여일</th>
+            <th>추방</th>
           </tr>
         </thead>
         <tbody>
@@ -106,6 +115,9 @@ function S_member() {
               <td><strong>No {member.study_member_id}</strong></td>
               <td>{member.nickname}</td>
               <td>{formatDateAndTime(member.created_at)}</td>
+              <td>
+                <button onClick={() => handleReject(member.member_id)}>X</button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -128,8 +140,8 @@ function S_member() {
               <td>{member.nickname}</td>
               <td>{formatDateAndTime(member.created_at)}</td>
               <td>
-                <button onClick={() => handleAccept(member.study_member_id)}>O</button>
-                <button onClick={() => handleReject(member.study_member_id)}>X</button>
+                <button onClick={() => handleAccept(member.member_id)}>O</button>
+                <button onClick={() => handleReject(member.member_id)}>X</button>
               </td>
             </tr>
           ))}
