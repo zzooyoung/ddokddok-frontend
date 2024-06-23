@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 //npm install axios
 import axios from "axios";
-// npm install react-select
-import Select from "react-select";
-// npm install react-syntax-highlighter
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// npm install react-syntax-highlighter prism-react-renderer
-import { coy } from "react-syntax-highlighter/dist/esm/styles/prism";
+import introImg from '../assets/introImg.png';
 
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
@@ -42,20 +37,31 @@ const Main = () => {
   };
 
   return (
-    <div>
-      <div className="main-container">
-        <div className="content1">
-          <div className="section1">
-            <img></img>
+    
+    <div className="main-container">
+  
+      <div className="introduce">
+        <div className="rowValue">
+
+          <div className="intor-img">
+            <img src={introImg} alt="Logo" className="introImg" />
           </div>
-          <div className="section2">
-            <p>똑똑은</p>
+
+          <div className="intro-content">
+            <p style={{ color: 'red' }}>똑똑은</p>
             <p>비대면 스터디 플랫폼입니다.</p>
           </div>
         </div>
-        <button onClick={createStudyClick} className="create-study-button">
-          스터디 생성 버튼
-        </button>
+
+        <div className="rowValue">
+          <div class="button-container">
+            <button onClick={createStudyClick} className="create-study-button">스터디 생성 버튼</button>
+          </div>
+        </div>
+         
+      </div>
+
+      <div className="studyList">
         <div className="divwrapper-container">
           {studies.map((study) => (
             <StudyCatalogue
@@ -68,7 +74,12 @@ const Main = () => {
           ))}
         </div>
       </div>
-    </div>
+      
+      
+      
+      </div>
+
+    
   );
 };
 

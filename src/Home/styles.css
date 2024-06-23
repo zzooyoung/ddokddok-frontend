@@ -1,3 +1,81 @@
+
+.introduce {
+  width: 100%; /* 너비를 100%로 설정하여 화면 전체 너비를 차지하도록 함 */
+  background-color: #D4F3F3; /* 배경색을 보라색으로 설정 */
+  padding: 10px 0; /* 상하 패딩 유지, 좌우 패딩 제거 */
+  border: 3px solid white; /* 흰색 테두리 추가 */
+}
+
+.rowValue {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 10px;
+}
+
+.intor-img, .intro-content {
+  flex: 1; /* 각 요소에 동일한 너비 부여 */
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.introImg {
+  max-width: 50%; /* 이미지 최대 너비 조정 */
+  height: auto; /* 높이 자동 조절 */
+}
+
+
+.intro-content {
+  display: block; /* flex나 inline-block이 설정된 경우 이를 block으로 변경 */
+  font-size: 80px;
+  text-align: left;
+
+}
+
+
+.create-study-button {
+  background-color: #FFC0CB; /* 배경색 설정 */
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 30px;
+}
+
+.studyList {
+  width: 100%; /* 전체 너비 설정 */
+  display: flex;
+  flex-direction: column;
+}
+
+.divwrapper-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* 가운데 정렬 */
+  gap: 20px;
+}
+
+.div-wrapper {
+  flex: 1 1 20%; /* Adjust based on how many items per row */
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+.code-editor-container, .code-editor-textarea, .code-editor-highlight, .content1, .div-wrapper img, .div-wrapper .div-wrapper-text {
+  /* 기존 스타일에 변경 사항 없음 */
+}
+
+
+.introImg {
+  max-width: 70%;/* Ensures the image does not overflow */
+  height: auto;
+}
+
 /********* styles.css ****************/
 .code-editor-container {
   position: relative;
@@ -46,8 +124,14 @@
   justify-content: center; /* 중앙 정렬 */
 }
 
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%; /* 부모 요소와 동일한 너비 */
+}
+
 .create-study-button {
-  background-color: #e0f2f1; /* 기본 배경 색 */
+  background-color: #cac8c8; /* 기본 배경 색 */
   border: none;
   border-radius: 15px; /* 둥근 모서리 */
   color: #000; /* 글자 색 */
@@ -62,7 +146,7 @@
 }
 
 .create-study-button:hover {
-  background-color: #b2dfdb; /* 호버 시 색상 변경 */
+  background-color: #9d9c9c; /* 호버 시 색상 변경 */
 }
 
 .create-study-button:active {
@@ -97,3 +181,8 @@
 .div-wrapper .div-wrapper-text {
   line-height: 1.5;
 }
+
+
+/*******************************/
+/* styles.css */
+
