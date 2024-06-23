@@ -15,6 +15,8 @@ import "./App.css";
 import Study from "./StudyDetails/study_main";
 import CheifStudyHome from "./StudyDetails/Home/CheifStudyHome";
 
+import QnaCreatePage from "./QnA/qna_create_page";
+
 function App() {
   return (
     <div className="App">
@@ -35,6 +37,7 @@ function App() {
                 path="/StudyDetails/Home/Cheif"
                 element={<CheifStudyHome />}
               />
+              <Route path="/qna/create" element={<QnaCreatePage />} />
             </Routes>
           </div>
         </div>

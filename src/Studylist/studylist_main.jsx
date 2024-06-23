@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./style.css"; // 통합된 CSS 파일을 import합니다.
+import "./StudyListStyle.css"; // 통합된 CSS 파일을 import합니다.
 
 import TagComponent from "./TagComponent";
 import StudyCatalogue from "./StudyCatalogue";
@@ -34,10 +34,12 @@ const StudyList = () => {
         const response = await axios.get(
           "http://192.168.0.98:8080/study/list",
           {
-            page: 1,
-            perPage: 10,
-            sort: sortOrder,
-            tag: selectedTag, // 선택된 태그를 요청에 포함
+            params: {
+              page: 1,
+              perPage: 10,
+              sort: sortOrder,
+              tag: selectedTag, // 선택된 태그를 요청에 포함
+            },
           }
         );
         setStudies(response.data);
@@ -72,7 +74,7 @@ const StudyList = () => {
               key={tag.tag_id}
               className="component"
               tag={tag}
-              onClick={handleTagChange}
+              onClick={() => handleTagChange(tag.tag_id)} // 함수 호출 수정
             />
           ))}
         </div>
