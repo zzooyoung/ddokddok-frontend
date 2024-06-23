@@ -10,6 +10,7 @@ import Register from './Register/register_main';
 import Studylist from './Studylist/studylist_main';
 import QnA from './QnA/qna_main';
 import Mypage from './Mypage/mypage_main';
+import CreateStudy from './CreateStudy/create_study';
 import './App.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               <Route path="/studylist" element={<Studylist />} />
               <Route path="/qna" element={<QnA />} />
               <Route path="/mypage" element={<Mypage />} />
+              <Route path="/createstudy" element={<CreateStudy/>} />
             </Routes>
             </div>
         </div>

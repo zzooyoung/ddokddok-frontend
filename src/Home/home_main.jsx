@@ -7,24 +7,35 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import './styles.css';
+import { useNavigate } from 'react-router-dom';
 
-const languageOptions = [
-    { value: 'javascript', label: 'JavaScript' },
-    { value: 'python', label: 'Python' },
-    { value: 'java', label: 'Java' },
-    { value: 'c', label: 'C' },
-    { value: 'cpp', label: 'C++' },
-];
+
 
 const Main = () => {
+
+    const navigate=useNavigate();
+
+
+    const createStudyClick=()=>{
+        navigate('/createStudy');
+    }
+
 
 
     return (
         <div>
-            <h1>
-            메인페이지입니다.
-            </h1>
-            
+            <div className="main-container">
+                <div className="content1">
+                    <div className="section1">
+                        <img></img>
+                    </div>
+                    <div className="section2">
+                        <p>똑똑은</p>
+                        <p>비대면 스터디 플랫폼입니다.</p>
+                    </div>
+                </div>
+                <button onClick={createStudyClick} className="create-study-button">스터디 생성 버튼</button>
+            </div>
         </div>
     );
 };
