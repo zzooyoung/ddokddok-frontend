@@ -21,11 +21,13 @@ const QnaPage = () => {
             params: filters,
           }
         );
+
         console.log("Fetched questions:", response.data);
         setQuestions(response.data.data || []); // 데이터 설정 (response.data.data가 정의되지 않은 경우 빈 배열 사용)
       } catch (error) {
         console.error("Error fetching questions:", error);
         // 에러 처리 (예: 에러 메시지 표시)
+
       }
     };
 
@@ -40,10 +42,13 @@ const QnaPage = () => {
     }));
   };
 
+
   return (
     <div>
       <h1>QnA 페이지</h1>
+
       <div className="qna">
+
         <input
           type="text"
           name="keyword"
@@ -56,6 +61,7 @@ const QnaPage = () => {
           <option value="">태그 선택</option>
           <option value="1">태그 1</option>
           <option value="2">태그 2</option>
+
         </select>
         <select name="sort" value={filters.sort} onChange={handleChange}>
           <option value="asc">오름차순</option>
@@ -76,6 +82,7 @@ const QnaPage = () => {
           placeholder="페이지 당 항목 수"
         />
 
+
         <div className="qna-list">
           {questions.length > 0 ? (
             questions.map((question) => (
@@ -90,6 +97,7 @@ const QnaPage = () => {
           ) : (
             <p>질문이 없습니다.</p>
           )}
+
         </div>
       </div>
     </div>
