@@ -1,0 +1,47 @@
+.row-wrapper {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px; /* space between rows */
+}
+
+.row1, .row2 {
+    padding: 20px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.row1 {
+    background-color: #D4F3F3; /* light teal background */
+    width: 200px; /* fixed width for chapter number */
+}
+
+.row2 {
+    background-color: #F4F2F0; /* light gray background */
+    width: 700px; /* fixed width for content */
+    text-align: left; /* content aligned to the left */
+}
+
+/*
+
+.row-wrapper{
+    color:black;
+    padding:20px;
+    display: flex;
+    justify-content: center;
+}
+
+.row1{
+    background-color: #D4F3F3;
+    width:200px;
+    font-size: 25px;
+    text-align: center
+}
+
+.row2{
+    background-color: rgb(244, 242, 240);
+    width:700px;
+    font-size: 25px;
+    text-align: center
+}
+*/

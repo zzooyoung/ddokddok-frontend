@@ -62,6 +62,10 @@ function S_notice() {
 
   return (
     <div>
+      <div className="create-notice-wrapper">
+        <button>공지 작성하기</button>
+      </div>
+      
       <div className="search-container">
         <input
           type="text"
