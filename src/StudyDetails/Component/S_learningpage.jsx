@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./style.css";
+import "./learningpage_styles.css";
 
 function S_learningpage() {
     const [curriculums, setCurriculums] = useState([]); // 최상위 레벨로 이동

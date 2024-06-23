@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "./home_styles.css";
 
 const StudyCard = ({ category, level, title, date, imageUrl }) => (
     <div className="study-card">
@@ -33,20 +33,37 @@ const StudyCard = ({ category, level, title, date, imageUrl }) => (
   
   function S_home() {
     return (
-      <div className="stats-container">
-        <div className="stats-card">
-          <div className="stats-grid">
-            <StatCard label="내 학습상황" value="16/52" description="진행 상황" />
-            <StatCard label="학습 시간" value="6h 28m" description="" />
-            <StatCard label="종료 일자" value="D-29" description="" />
+      <div className="homeWrapper">
+        <div className="studyStatusWrapper">
+        <div className="study-status1">
+          <h1>내 학습상황</h1>
+          <div className="sub-container">
+            <div className="sub">
+              <h2>16/52</h2>
+              <p style={{ fontSize: '20px' }}>진행 상황</p>
+            </div>
+            <div className="sub">
+              <h2>6h 28m</h2>
+              <p style={{ fontSize: '20px' }} >학습 시간</p>
+            </div>
+            <div className="sub">
+              <h2>D - 29</h2>
+              <p style={{ fontSize: '20px' }} >종료 일자</p>
+            </div>
           </div>
-        </div>
-          <div className="stats-card progress-card">
-            <h3 className="progress-title">진행 상황</h3>
-            <p className="progress-value">학습중</p>
-          </div>
-              
-      <section className="study-intro">
+      </div>
+
+      <div className="study-status2">
+      <h1>내 학습상황</h1>
+      <p style={{ fontSize: '50px',fontWeight:'bold' }}>학습중</p>
+      
+      </div>
+
+
+        
+      </div>
+
+        <div className="home-contents">
         <h3 className="intro-title">스터디 소개</h3>
           <div className="intro-content">
             초급자를 위해 준비한 <br />
@@ -60,8 +77,9 @@ const StudyCard = ({ category, level, title, date, imageUrl }) => (
                 <li>쏠 생각이 없다면, 손가락을 방아쇠에 걸지 말 것.(Keep your finger off the trigger until ready to fire) 오발의 60퍼센트가 이 규칙을 지키지 않아서 발생한다. 일명 Trigger Discipline/방아쇠 주의 수칙이라고 한다.</li>
             </ul>
           </div>
-      </section>
+        </div>
       </div>
+
     )
   }
 
