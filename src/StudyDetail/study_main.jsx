@@ -86,7 +86,7 @@ const Study = ( studyId ) => {
                 홈
               </div>
               <ul className="nav-list">
-                <NavItem label="공지" />
+                <NavItem label="공지" href="" />
                 <NavItem label="학습 페이지" />
                 <NavItem label="스터디 멤버 보기" />
                 <NavItem label="채팅" />

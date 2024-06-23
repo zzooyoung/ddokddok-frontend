@@ -1,85 +1,91 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
-import login from '../apis/login';
+
+
 
 const LoginMain = () => {
-    const [id, setId] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+  const navigate = useNavigate();
+  const myStorage = window.sessionStorage;
+ 
 
-    const handleIdChange = (e) => {
-        setId(e.target.value);
-    };
+  const handleIdChange = (e) => {
+    setId(e.target.value);
+  };
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
+  const handlePasswordChange = (e) => {
+    setPw(e.target.value);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(id);
+      console.log(pw);
+      const response = await axios.post(
+        "http://192.168.0.98:8080/login",
+        {
+          loginid: id,
+          password: pw,
+        }
+      );
+      console.log('Login successful:', response.data);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // 입력된 이메일과 비밀번호를 출력
-        // 나중에 서버로 데이터를 전송 필요
-        console.log('id:', id);
-        console.log('Password:', password);
-    };
+      if(response.data){
+        console.log(response.data.member_id);
+        sessionStorage.setItem("id", response.data.member_id);
+        console.log(sessionStorage.getItem("id"));
+        navigate('/mypage', {state : {param1 : response.data}});
+      }
+      
+    } catch (error) {
+      console.error("Error logging in:", error);
+    } finally {
+    }
+  };
 
-    const handleRegisterClick = () => {
-        navigate('/register');
-    };
+  const handleRegisterClick = () => { 
+    navigate('/register');
+  };
 
-
-    const handleLoginClick = async () => {
-        navigate('/mypage');
-        console.log('id:', id);
-        console.log('Password:', password);
-    
-          // 로그인 api 호출
-        const result = await login(id, password);
-        console.log('로그인 성공:', result);
-    
-        const { accessToken, refreshToken } = result; 
-        localStorage.setItem('access', accessToken);
-        localStorage.setItem('refresh', refreshToken);
-        console.log('Navigating to /mypage');
-     
-        
-    };
-
-    return (
-        <div>
-            <div className="login-container">
-                <h2>로그인</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="id">아이디</label>
-                        <input
-                            placeholder='아이디'
-                            id="id"
-                            value={id}
-                            onChange={handleIdChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">비밀번호</label>
-                        <input
-                            placeholder='비밀번호'
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={handlePasswordChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit" onClick={handleLoginClick} className="login-button">로그인</button>
-                </form>
-                <button onClick={handleRegisterClick} className="register-button">
-                    회원가입
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div className="login-container">
+        <h2>로그인</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="id">아이디</label>
+            <input
+              placeholder='아이디'
+              id="id"
+              value={id}
+              onChange={handleIdChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">비밀번호</label>
+            <input
+              placeholder='비밀번호'
+              type="password"
+              id="password"
+              value={pw}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <button type="submit" className="login-button" >
+            로그인
+          </button>
+        </form>
+        <button type="button" onClick={handleRegisterClick} className="register-button">
+          회원가입
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default LoginMain;
