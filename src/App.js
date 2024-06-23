@@ -1,17 +1,19 @@
-import React from 'react';
+import React from "react";
 // npm install react-router-dom
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './Common/header';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./Common/header";
 
-import Home from './Home/home_main';
-import Login from './Login/login_main';
-import Register from './Register/register_main';
+import Home from "./Home/home_main";
+import Login from "./Login/login_main";
+import Register from "./Register/register_main";
 
-import Studylist from './Studylist/studylist_main';
-import QnA from './QnA/qna_main';
-import Mypage from './Mypage/mypage_main';
-import CreateStudy from './CreateStudy/create_study';
-import './App.css';
+import Studylist from "./Studylist/studylist_main";
+import QnA from "./QnA/qna_main";
+import Mypage from "./Mypage/mypage_main";
+import CreateStudy from "./CreateStudy/create_study";
+import "./App.css";
+
+import CheifStudyHome from "./StudyDetails/Home/CheifStudyHome";
 
 function App() {
   return (
@@ -27,9 +29,13 @@ function App() {
               <Route path="/studylist" element={<Studylist />} />
               <Route path="/qna" element={<QnA />} />
               <Route path="/mypage" element={<Mypage />} />
-              <Route path="/createstudy" element={<CreateStudy/>} />
+              <Route path="/createstudy" element={<CreateStudy />} />
+              <Route
+                path="/StudyDetails/Home/Cheif"
+                element={<CheifStudyHome />}
+              />
             </Routes>
-            </div>
+          </div>
         </div>
       </Router>
     </div>
