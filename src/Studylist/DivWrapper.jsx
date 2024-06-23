@@ -7,7 +7,7 @@ const DivWrapper = ({ className, title, image, studyId }) => {
 
   const handleClick = () => {
     // 클릭 시 스터디 상세 페이지로 이동하는 코드
-    Navigate(`/study/${studyId}`);
+    Navigate(`/study/${studyId}`, {state : {studyId: studyId}});
   };
 
   return (
