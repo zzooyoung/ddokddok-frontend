@@ -185,3 +185,13 @@
   .study-detail{
 
   }
+
+  .user_id{
+    
+  }
+
+  .user_profile{
+    width : 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
