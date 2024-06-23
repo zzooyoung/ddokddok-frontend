@@ -1,0 +1,129 @@
+.div-wrapper-screen {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 화면 상단에 정렬되도록 설정 */
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.div-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    max-width: 80%;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.component-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.component {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.component:hover {
+    transform: translateY(-3px);
+}
+
+.component img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.component .component-text {
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.divwrapper-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.div-wrapper {
+    display: flex;
+    margin: 10px;
+    flex-direction: column; /* 이미지와 텍스트를 세로로 배치 */
+    text-align: left;
+    gap: 10px; /* flex container 내부의 요소들 간의 간격 */
+}
+
+.div-wrapper img {
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px; /* 윤곽선을 둥글게 처리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 설정 */
+}
+
+.div-wrapper .div-wrapper-text {
+    line-height: 1.5;
+}
+
+.sort-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: flex-start; /* 버튼을 왼쪽으로 정렬 */
+}
+
+.sort-buttons button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.sort-buttons button:hover {
+    background-color: #45a049;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.nav-item {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.nav-item:hover {
+    background-color: #45a049;
+}
+
+.nav-item:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.page-info {
+    display: flex;
+    align-items: center;
+}
