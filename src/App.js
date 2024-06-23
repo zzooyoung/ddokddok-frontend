@@ -14,6 +14,7 @@ import Mypage from "./Mypage/mypage_main";
 import CreateStudy from "./CreateStudy/create_study";
 import "./App.css";
 import Study from "./StudyDetails/study_main";
+import Admin from "./Admin/admin_main";
 import CheifStudyHome from "./StudyDetails/Home/CheifStudyHome";
 
 import QnaCreatePage from "./QnA/qna_create_page";
@@ -35,6 +36,7 @@ function App() {
 
               <Route path="/createstudy" element={<CreateStudy />} />
               <Route path="/study" element={<Study />} />
+              <Route path="/admin" element={<Admin />} />
               <Route
                 path="/StudyDetails/Home/Cheif"
                 element={<CheifStudyHome />}
