@@ -16,13 +16,6 @@
   overflow: hidden;
 }
 
-/* .component-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  flex-wrap: wrap;
-  justify-content: center;
-} */
-
 .component-container {
   display: grid;
   grid-template-columns: repeat(
@@ -106,6 +99,7 @@
   cursor: pointer;
   font-size: 16px;
   border-radius: 5px;
+  justify-content: start !important;
 }
 
 .sort-buttons button:hover {

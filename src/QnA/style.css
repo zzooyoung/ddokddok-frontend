@@ -72,3 +72,54 @@ input[type="number"] {
 .question:last-child {
   border-bottom: none;
 }
+
+/* qna_create css */
+.qna-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1em;
+  background: #f4f4f4;
+  border-radius: 5px;
+}
+
+.qna-form .form-group {
+  margin-bottom: 1em;
+}
+
+.qna-form label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.qna-form input,
+.qna-form textarea {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.qna-form button {
+  padding: 0.7em 1.5em;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.qna-form button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.qna-form .error {
+  color: red;
+  margin-top: 1em;
+}
+
+.qna-form .success {
+  color: green;
+  margin-top: 1em;
+}
