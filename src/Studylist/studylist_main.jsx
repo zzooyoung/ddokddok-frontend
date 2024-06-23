@@ -108,11 +108,11 @@ const StudyList = () => {
               />
             ))}
         </div>
-        <div className="navigation">
+        {/* <div className="navigation">
           <div className="nav-item">이전</div>
           <div className="page-info">1 / 1</div>
-          <div className="nav-item">다음</div>
-        </div>
+          <div className="nav-item">다음</div>            페이지 넘기는 부분 -미구현(하드코딩)
+        </div> */}
       </div>
     </div>
   );

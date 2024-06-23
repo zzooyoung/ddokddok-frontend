@@ -11,6 +11,7 @@ const QnaDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const currentUserId = sessionStorage.getItem("id");
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -35,8 +36,19 @@ const QnaDetailPage = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://192.168.0.98:8080/question/${question_id}`);
-      navigate("/");
+      const response = await axios.post(
+        "http://192.168.0.98:8080/question/delete",
+        {
+          questionId: question_id,
+          memberId: currentUserId,
+          member_id: currentUserId, // member_id를 추가
+        }
+      );
+      if (response.status === 200) {
+        navigate("/");
+      } else {
+        throw new Error("Failed to delete question");
+      }
     } catch (error) {
       console.error("Error deleting question:", error);
       setError("질문을 삭제하는 중에 오류가 발생했습니다.");
@@ -56,16 +68,14 @@ const QnaDetailPage = () => {
       {question ? (
         <div>
           <div className="question-header">
-            <h1 className="question-title">
-              {question.title}
-              <div className="question-tags">
-                {tags.map((tag) => (
-                  <span key={tag.tag_id} className="question-tag">
-                    #{tag.tag_name}
-                  </span>
-                ))}
-              </div>
-            </h1>
+            <h1 className="question-title">{question.title}</h1>
+            <div className="question-tags">
+              {tags.map((tag) => (
+                <span key={tag.tag_id} className="question-tag">
+                  #{tag.tag_name}
+                </span>
+              ))}
+            </div>
             <div className="question-meta">
               <div>
                 <p>작성자: {question.nickname}</p>
@@ -95,7 +105,7 @@ const QnaDetailPage = () => {
           </div>
 
           <div className="actions">
-            {question.nickname === "currentUserNickname" && (
+            {parseInt(question.member_id) === parseInt(currentUserId) && (
               <>
                 <button className="edit-button">수정</button>
                 <button onClick={handleDelete} className="delete-button">

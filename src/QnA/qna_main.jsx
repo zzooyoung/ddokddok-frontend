@@ -15,6 +15,7 @@ const QnaPage = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loginError, setLoginError] = useState(null); // 로그인 오류 상태 추가
 
   const navigate = useNavigate();
 
@@ -63,7 +64,12 @@ const QnaPage = () => {
   };
 
   const handleCreateClick = () => {
-    navigate("create");
+    const currentUserId = sessionStorage.getItem("id");
+    if (!currentUserId) {
+      setLoginError("로그인 해주세요.");
+    } else {
+      navigate("create");
+    }
   };
 
   const handleQuestionClick = (question_id) => {
@@ -107,6 +113,7 @@ const QnaPage = () => {
         <button onClick={handleCreateClick} className="create-button">
           QnA 생성 페이지로 이동
         </button>
+        {loginError && <p className="error">{loginError}</p>}
 
         <div className="qna-list">
           {questions.length > 0 ? (
