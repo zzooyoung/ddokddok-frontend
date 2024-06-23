@@ -34,8 +34,8 @@ const LoginMain = () => {
       console.log('Login successful:', response.data);
 
       if(response.data){
-        console.log(response.data.member_id);
-        sessionStorage.setItem("id", response.data.member_id);
+        console.log(response.data[0].member_id);
+        sessionStorage.setItem("id", response.data[0].member_id);
         console.log(sessionStorage.getItem("id"));
         navigate('/mypage', {state : {param1 : response.data}});
       }
