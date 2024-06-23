@@ -1,0 +1,125 @@
+/* style.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.qna {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-wrapper {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+select,
+input[type="number"] {
+  width: calc(33% - 14px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.qna-list {
+  margin-top: 20px;
+}
+
+.question {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 20px 0;
+}
+
+.question-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.question-content {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.question p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.question p:first-of-type {
+  margin-top: 10px;
+}
+
+.question:last-child {
+  border-bottom: none;
+}
+
+/* qna_create css */
+.qna-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1em;
+  background: #f4f4f4;
+  border-radius: 5px;
+}
+
+.qna-form .form-group {
+  margin-bottom: 1em;
+}
+
+.qna-form label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.qna-form input,
+.qna-form textarea {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.qna-form button {
+  padding: 0.7em 1.5em;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.qna-form button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.qna-form .error {
+  color: red;
+  margin-top: 1em;
+}
+
+.qna-form .success {
+  color: green;
+  margin-top: 1em;
+}
