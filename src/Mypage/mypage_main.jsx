@@ -12,7 +12,7 @@ import CreateStudy_OngoingContent from './CreateStudy_OngoingContent';
 import CreateStudy_FinishedContent from './CreateStudy_FinishedContent';
 import imgWithUrl from '../apis/imgWithUrl';
 
-
+import { Link } from 'react-router-dom';
 
 const Mypage = () => {
   const [nickname, setNickName] = useState('');
@@ -98,8 +98,10 @@ const Mypage = () => {
   };
 
   return (
+    
     <div className="mypage-container">
       {/* Profile Section */}
+      <Link to="/admin">관리자페이지</Link>
       <div className="profile-container">
         <h2 className="title">나의 프로필</h2>
         <div className="user_id">{nickname}</div>
