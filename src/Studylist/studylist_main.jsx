@@ -2,26 +2,42 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css"; // 통합된 CSS 파일을 import합니다.
 
-import Component from "./Component";
+import TagComponent from "./TagComponent";
 import StudyCatalogue from "./StudyCatalogue";
 
 const StudyList = () => {
   const [studies, setStudies] = useState([]);
+  const [tags, setTags] = useState([]); // 태그 상태 추가
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState("latest"); // 정렬 순서 상태 추가
+  const [selectedTag, setSelectedTag] = useState(null); // 선택된 태그 상태 추가
 
+  // 태그 데이터를 가져오는 useEffect
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await axios.get("http://192.168.0.98:8080/study/tag");
+        setTags(response.data);
+      } catch (error) {
+        console.error("Error fetching tags:", error);
+      }
+    };
+
+    fetchTags();
+  }, []);
+
+  // 스터디 데이터를 가져오는 useEffect
   useEffect(() => {
     const fetchStudies = async () => {
+      setLoading(true); // 데이터를 다시 가져올 때 로딩 상태를 true로 설정
       try {
-        const response = await axios.post(
+        const response = await axios.get(
           "http://192.168.0.98:8080/study/list",
-          null,
           {
-            params: {
-              page: 1,
-              perPage: 10,
-              sort: sortOrder,
-            },
+            page: 1,
+            perPage: 10,
+            sort: sortOrder,
+            tag: selectedTag, // 선택된 태그를 요청에 포함
           }
         );
         setStudies(response.data);
@@ -33,7 +49,7 @@ const StudyList = () => {
     };
 
     fetchStudies();
-  }, [sortOrder]); // sortOrder가 변경될 때마다 데이터를 다시 가져옵니다.
+  }, [sortOrder, selectedTag]); // sortOrder나 selectedTag가 변경될 때마다 데이터를 다시 가져옵니다.
 
   if (loading) {
     return <div>Loading...</div>;
@@ -43,15 +59,20 @@ const StudyList = () => {
     setSortOrder(order);
   };
 
+  const handleTagChange = (tagId) => {
+    setSelectedTag(tagId);
+  };
+
   return (
     <div className="study-list-screen">
       <div className="div-2">
         <div className="component-container">
-          {studies.map((study) => (
-            <Component
-              key={study.study_id}
+          {tags.map((tag) => (
+            <TagComponent
+              key={tag.tag_id}
               className="component"
-              image={study.image_url}
+              tag={tag}
+              onClick={handleTagChange}
             />
           ))}
         </div>

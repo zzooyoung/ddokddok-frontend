@@ -12,7 +12,7 @@ const StudyCatalogue = ({ className, title, image, studyId }) => {
 
   return (
     <div className={`div-wrapper ${className}`} onClick={handleClick}>
-      <img src={imageUrl} alt="Web Sample" />
+      <img src={imageUrl} alt="Web Sample" className="div-wrapper-img" />
       <div className="div-wrapper-text">{title}</div>
     </div>
   );

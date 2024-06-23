@@ -19,7 +19,7 @@ const Main = () => {
   useEffect(() => {
     const fetchStudies = async () => {
       try {
-        const response = await axios.post(
+        const response = await axios.get(
           "http://192.168.0.98:8080/study/list",
           null,
           {
@@ -57,7 +57,7 @@ const Main = () => {
           스터디 생성 버튼
         </button>
         <div className="divwrapper-container">
-          {studies.map((study) => (
+          {studies.slice(0, 3).map((study) => (
             <StudyCatalogue
               key={study.study_id}
               className="div-wrapper"

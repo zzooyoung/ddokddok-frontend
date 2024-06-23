@@ -71,7 +71,6 @@
 }
 
 .divwrapper-container {
-  /*  */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -80,15 +79,15 @@
 
 .div-wrapper {
   display: flex;
-  margin: 10px;
+  margin: 30px;
   flex-direction: column; /* 이미지와 텍스트를 세로로 배치 */
   text-align: left;
-  gap: 10px; /* flex container 내부의 요소들 간의 간격 */
+  gap: 30px; /* flex container 내부의 요소들 간의 간격 */
 }
 
-.div-wrapper img {
-  width: 200px;
-  height: 100px;
+.div-wrapper-img {
+  width: 300px;
+  height: 157px;
   object-fit: cover;
   border-radius: 8px; /* 윤곽선을 둥글게 처리 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 설정 */
