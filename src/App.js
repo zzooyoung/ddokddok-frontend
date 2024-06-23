@@ -14,6 +14,14 @@ import Mypage from './Mypage/mypage_main';
 import CreateStudy from './CreateStudy/create_study';
 import './App.css';
 =======
+import Studylist from "./Studylist/studylist_main";
+import QnA from "./QnA/qna_main";
+import Mypage from "./Mypage/mypage_main";
+import CreateStudy from "./CreateStudy/create_study";
+import "./App.css";
+import Study from './StudyDetails/study_main';
+import CheifStudyHome from "./StudyDetails/Home/CheifStudyHome";
+>>>>>>> Stashed changes
 
 function App() {
   return (
