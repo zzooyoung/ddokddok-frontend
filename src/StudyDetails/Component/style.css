@@ -1,0 +1,28 @@
+.row-wrapper{
+    color:black;
+    padding:20px;
+    display: flex;
+    justify-content: center;
+}
+
+.row1{
+    background-color: #D4F3F3;
+    width:200px;
+    font-size: 25px;
+    text-align: center
+}
+
+.row2{
+    background-color: rgb(244, 242, 240);
+    width:700px;
+    font-size: 25px;
+    text-align: center
+}
+
+.memberStandard{
+    background-color: #D4F3F3;
+}
+
+.memberContent{
+    background-color: #bcbcbc;
+}
