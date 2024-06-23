@@ -37,7 +37,7 @@ function S_member() {
 
     fetchMemberData();
   }, []);
-
+  console.log(sessionStorage.getItem("id"));
 
   const handleAccept = async (memberId) => {
     const memberToAccept = members.find(member => member.member_id === memberId);
@@ -45,9 +45,15 @@ function S_member() {
       try {
         // Send a POST request to the server to update the member status
         await axios.post(`http://192.168.0.98:8080/study/member/accept`, {
+<<<<<<< Updated upstream
           member_id: sessionStorage.getItem("id"),
           memberId: memberId, // Make sure the field names match what your API expects
           studyId: memberToAccept.study_id, // Assuming study_id is available in the member object
+=======
+          member_id: members.member_id,
+          memberId: sessionStorage.getItem("id"), 
+          studyId: memberToAccept.study_id, 
+>>>>>>> Stashed changes
         });
   
         // Update local state to reflect the new status of the member
