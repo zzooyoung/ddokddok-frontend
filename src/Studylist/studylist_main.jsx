@@ -44,7 +44,7 @@ const StudyList = () => {
   };
 
   return (
-    <div className="div-wrapper-screen">
+    <div className="study-list-screen">
       <div className="div-2">
         <div className="component-container">
           {studies.map((study) => (

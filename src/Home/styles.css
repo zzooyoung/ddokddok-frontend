@@ -1,72 +1,99 @@
-
 /********* styles.css ****************/
 .code-editor-container {
-    position: relative;
-    width: 100%;
-    margin-top: 20px;
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .code-editor-textarea {
-    width: 100%;
-    font-family: 'Fira Code', monospace;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    resize: none;
-    background: #f5f2f0; /* background similar to coy theme */
-    color: #393a34; /* default text color similar to coy theme */
-    line-height: 1.5;
-    font-size: 16px;
-    overflow: auto;
-    min-height: 200px; /* Ensure a minimum height */
+  width: 100%;
+  font-family: "Fira Code", monospace;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  resize: none;
+  background: #f5f2f0; /* background similar to coy theme */
+  color: #393a34; /* default text color similar to coy theme */
+  line-height: 1.5;
+  font-size: 16px;
+  overflow: auto;
+  min-height: 200px; /* Ensure a minimum height */
 }
 
 .code-editor-highlight {
-    width: 100%;
-    font-family: monospace;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    max-height: 100%;
-    overflow: hidden;
-    pointer-events: none;
+  width: 100%;
+  font-family: monospace;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 100%;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .content1 {
-    display: flex;
-    justify-content: space-around;
-    width: 100%; /* 전체 너비 */
-    background-color: #a2a2a2; /* 배경색 설정 */
-    display: flex;
-    justify-content: center; /* 중앙 정렬 */
+  display: flex;
+  justify-content: space-around;
+  width: 100%; /* 전체 너비 */
+  background-color: #a2a2a2; /* 배경색 설정 */
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
 }
 
 .create-study-button {
-    background-color: #e0f2f1; /* 기본 배경 색 */
-    border: none;
-    border-radius: 15px; /* 둥근 모서리 */
-    color: #000; /* 글자 색 */
-    padding: 10px 20px; /* 내부 여백 */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 효과 */
-    cursor: pointer; /* 마우스 오버 시 커서 모양 */
-  }
-  
-  .create-study-button:hover {
-    background-color: #b2dfdb; /* 호버 시 색상 변경 */
-  }
-  
-  .create-study-button:active {
-    background-color: #009688; /* 클릭 시 색상 변경 */
-    color: #fff; /* 클릭 시 글자 색상 변경 */
-  }
+  background-color: #e0f2f1; /* 기본 배경 색 */
+  border: none;
+  border-radius: 15px; /* 둥근 모서리 */
+  color: #000; /* 글자 색 */
+  padding: 10px 20px; /* 내부 여백 */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 효과 */
+  cursor: pointer; /* 마우스 오버 시 커서 모양 */
+}
+
+.create-study-button:hover {
+  background-color: #b2dfdb; /* 호버 시 색상 변경 */
+}
+
+.create-study-button:active {
+  background-color: #009688; /* 클릭 시 색상 변경 */
+  color: #fff; /* 클릭 시 글자 색상 변경 */
+}
+
+.divwrapper-container {
+  /*  */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.div-wrapper {
+  display: flex;
+  margin: 10px;
+  flex-direction: column; /* 이미지와 텍스트를 세로로 배치 */
+  text-align: left;
+  gap: 10px; /* flex container 내부의 요소들 간의 간격 */
+}
+
+.div-wrapper img {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px; /* 윤곽선을 둥글게 처리 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 설정 */
+}
+
+.div-wrapper .div-wrapper-text {
+  line-height: 1.5;
+}
