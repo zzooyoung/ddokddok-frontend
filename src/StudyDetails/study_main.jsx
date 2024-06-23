@@ -2,48 +2,49 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css"; // 통합된 CSS 파일을 import합니다.
 
-import Home from './Component/S_home.jsx';
-import Notice from './Component/S_notice';
-import LearningPage from './Component/S_learningpage';
-import Chat from './Component/S_chat';
-import Member from './Component/S_member';
-import Hw from './Component/S_hw';
-import Calender from './Component/S_calender';
+import Home from "./Component/S_home.jsx";
+import Notice from "./Component/S_notice";
+import LearningPage from "./Component/S_learningpage";
+import Chat from "./Component/S_chat";
+import Member from "./Component/S_member";
+import Hw from "./Component/S_hw";
+import Calender from "./Component/S_calender";
 
 const StudyCard = ({ category, level, title, date, imageUrl }) => (
-    <div className="study-card">
-      <div className="study-info">
-        <div className="study-tags">
-          <span className="tag category">{category}</span>
-          <span className="tag level">{level}</span>
-        </div>
-        <h3 className="study-title">{title}</h3>
-        <p className="study-date">{date}</p>
+  <div className="study-card">
+    <div className="study-info">
+      <div className="study-tags">
+        <span className="tag category">{category}</span>
+        <span className="tag level">{level}</span>
       </div>
-      <img src={imageUrl} alt="Study visual representation" className="study-image" />
+      <h3 className="study-title">{title}</h3>
+      <p className="study-date">{date}</p>
     </div>
-  );
+    <img
+      src={imageUrl}
+      alt="Study visual representation"
+      className="study-image"
+    />
+  </div>
+);
 
-  const StatCard = ({ label, value, description }) => (
-    <div className="stat-card">
-      <h4 className="stat-label">{label}</h4>
-      <p className="stat-value">{value}</p>
-      <p className="stat-description">{description}</p>
-    </div>
-  );
+const StatCard = ({ label, value, description }) => (
+  <div className="stat-card">
+    <h4 className="stat-label">{label}</h4>
+    <p className="stat-value">{value}</p>
+    <p className="stat-description">{description}</p>
+  </div>
+);
 
-  const NavItem = ({ label, isActive = false }) => (
-    <li className={`nav-item ${isActive ? 'active' : ''}`}>
-      <a href="#" className="nav-link">
-        {label}
-      </a>
-    </li>
-  );
+const NavItem = ({ label, isActive = false }) => (
+  <li className={`nav-item ${isActive ? "active" : ""}`}>
+    <a href="#" className="nav-link">
+      {label}
+    </a>
+  </li>
+);
 
-
-
-
-const Study = ( studyId ) => {
+const Study = (studyId) => {
   const [loading, setLoading] = useState(true);
   const [activeComponent, setActiveComponent] = useState("");
 
@@ -54,7 +55,7 @@ const Study = ( studyId ) => {
     chat: <Chat />,
     members: <Member />,
     hw: <Hw />,
-    calender:<Calender/>
+    calender: <Calender />,
   };
 
   const NavItem = ({ label, componentName, isActive = false }) => (
@@ -78,8 +79,6 @@ const Study = ( studyId ) => {
             params: {
               studyId: studyId,
             },
-
-
           }
         );
       } catch (error) {
@@ -90,12 +89,11 @@ const Study = ( studyId ) => {
     };
 
     fetchStudies();
-  }, []); 
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
 
   return (
     <>
@@ -114,34 +112,59 @@ const Study = ( studyId ) => {
         <div className="dashboard">
           <aside className="sidebar">
             <nav className="nav-sidebar">
-              <div className="nav-header">
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c48cd3a1c0083f5047bdc1b999cdf983414d70ad27cc7adc72ff039ff5d463c9?apiKey=c76cbc22e8484ee7adce376c21dd7f75&" alt="" className="nav-icon" />
-                홈
-              </div>
+              <div className="nav-header"></div>
               <ul className="nav-list">
-              <NavItem label="홈" componentName="home" isActive={activeComponent === "home"} />
-              <NavItem label="공지" componentName="notice" isActive={activeComponent === "notice"} />
-              <NavItem label="학습 페이지" componentName="learningPage" isActive={activeComponent === "learningPage"} />
-              <NavItem label="스터디 멤버 보기" componentName="members" isActive={activeComponent === "members"} />
-              <NavItem label="채팅" componentName="chat" isActive={activeComponent === "chat"} />
-              <NavItem label="캘린더" componentName="calendar" isActive={activeComponent === "calendar"} />
-              <NavItem label="과제" componentName="hw" isActive={activeComponent === "hw"} />
+                <NavItem
+                  label="홈"
+                  componentName="home"
+                  isActive={activeComponent === "home"}
+                />
+                <NavItem
+                  label="공지"
+                  componentName="notice"
+                  isActive={activeComponent === "notice"}
+                />
+                <NavItem
+                  label="학습 페이지"
+                  componentName="learningPage"
+                  isActive={activeComponent === "learningPage"}
+                />
+                <NavItem
+                  label="스터디 멤버 보기"
+                  componentName="members"
+                  isActive={activeComponent === "members"}
+                />
+                <NavItem
+                  label="채팅"
+                  componentName="chat"
+                  isActive={activeComponent === "chat"}
+                />
+                <NavItem
+                  label="캘린더"
+                  componentName="calendar"
+                  isActive={activeComponent === "calendar"}
+                />
+                <NavItem
+                  label="과제"
+                  componentName="hw"
+                  isActive={activeComponent === "hw"}
+                />
               </ul>
             </nav>
           </aside>
           <div className="main-dashboard">
-            <h2 className="dashboard-header">현재 N주차 진행 중이에요 ! 아자아자 ~ !</h2>
+            <h2 className="dashboard-header">
+              현재 N주차 진행 중이에요 ! 아자아자 ~ !
+            </h2>
             <div>
-            {activeComponent === 'home' && <Home />}
-            {activeComponent === 'notice' && <Notice />}
-            {activeComponent === 'learningPage' && <LearningPage />}
-            {activeComponent === 'members' && <Member />}
-            {activeComponent === 'chat' && <Chat />}
-            {activeComponent === 'calendar' && <Calender />}
-            {activeComponent === 'hw' && <Hw />}
+              {activeComponent === "home" && <Home />}
+              {activeComponent === "notice" && <Notice />}
+              {activeComponent === "learningPage" && <LearningPage />}
+              {activeComponent === "members" && <Member />}
+              {activeComponent === "chat" && <Chat />}
+              {activeComponent === "calendar" && <Calender />}
+              {activeComponent === "hw" && <Hw />}
             </div>
-            
-            
           </div>
         </div>
       </main>
