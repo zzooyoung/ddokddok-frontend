@@ -1,0 +1,187 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+.profile-container{
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.profileEditBtn {
+    background-color: #e0f2f1; /* 기본 배경 색 */
+    border: none;
+    border-radius: 15px; /* 둥근 모서리 */
+    color: #000; /* 글자 색 */
+    padding: 10px 20px; /* 내부 여백 */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 색상 전환 효과 */
+    cursor: pointer; /* 마우스 오버 시 커서 모양 */
+  }
+  
+  .profileEditBtn:hover {
+    background-color: #b2dfdb; /* 호버 시 색상 변경 */
+  }
+  
+  .profileEditBtn:active {
+    background-color: #009688; /* 클릭 시 색상 변경 */
+    color: #fff; /* 클릭 시 글자 색상 변경 */
+  }
+
+.participateStudy-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    /*padding: 20px;*/
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.createStudy-container {
+    max-width: 400px;
+    margin: 50px auto;
+    /*padding: 20px;*/
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.category1{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: None;
+    color: #ffffff;
+    text-align: center;
+
+}
+
+.cateBtn1{
+    flex: 1;
+    margin: 0 5px;
+    background: None;      
+    border: 1px solid #fff;        
+    color: #3f3f3f;           
+    font-size: 16px;       
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.category2{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: None;
+    color: #ffffff;
+    text-align: center;
+
+}
+.cateBtn2{
+    flex: 1;
+    margin: 0 5px;
+    background: None;      
+    border: 1px solid #fff;        
+    color: #3f3f3f;           
+    font-size: 16px;       
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.activeBtn {
+    color: white;       /* 활성 버튼의 텍스트 색상을 흰색으로 설정 */
+    background-color: #9d9fa1; /* 활성 버튼의 배경색을 진한 파란색으로 설정 */
+}
+
+.cateBtn:hover{
+    color:blue;
+    /*background-color: gray;*/
+}
+
+.cateBtn2Content{
+    /*padding: 20px;*/
+    background-color: rgb(219, 225, 223);   
+}
+
+
+
+/*study list 상세*/
+.developer-status {
+    width: 200px;
+    height: 200px;
+    background-color: #a0e1eb;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+
+  .study-icon{
+    width:100px;
+    height:100px;
+    border-radius: 20%;
+    background-color:#FFBF5F;
+  }
+  .study-icon img {
+    width: 50px; /* 이미지 크기 조절 */
+  }
+  
+  .study-info {
+    display: flex;
+    align-items: center; /* 세로 축에서 중앙 정렬 */
+    justify-content: center; /* 가로 축에서 중앙 정렬 */
+    padding:10px;
+    gap:10px;
+  }
+  
+
+  .study-info h3, .developer-info p {
+    margin: 0;
+    color: #333;
+    text-align: center;
+  }
+  
+
+  .study-category{
+    width:80px;
+    height:30px;
+    background-color:white;
+    border-radius:10px;
+  }
+
+  .study-category{
+    width:80px;
+    height:30px;
+    background-color:#FFBF5F;
+    border-radius:10px;
+  }
+
+
+  .study-status{
+    width:80px;
+    height:30px;
+    background-color:white;
+    border-radius:10px;
+  }
+
+
+  .study-detail{
+
+  }
