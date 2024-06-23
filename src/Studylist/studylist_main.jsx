@@ -3,7 +3,7 @@ import axios from "axios";
 import "./style.css"; // 통합된 CSS 파일을 import합니다.
 
 import Component from "./Component";
-import DivWrapper from "./DivWrapper";
+import StudyCatalogue from "./StudyCatalogue";
 
 const StudyList = () => {
   const [studies, setStudies] = useState([]);
@@ -61,7 +61,7 @@ const StudyList = () => {
         </div>
         <div className="divwrapper-container">
           {studies.map((study) => (
-            <DivWrapper
+            <StudyCatalogue
               key={study.study_id}
               className="div-wrapper"
               title={study.title}
