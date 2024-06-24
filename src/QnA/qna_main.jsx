@@ -105,10 +105,10 @@ const QnaPage = () => {
             </option>
           ))}
         </select>
-        <select name="sort" value={filters.sort} onChange={handleChange}>
+        {/* <select name="sort" value={filters.sort} onChange={handleChange}>
           <option value="asc">오름차순</option>
           <option value="desc">내림차순</option>
-        </select>
+        </select> */}
 
         <button onClick={handleCreateClick} className="create-button">
           QnA 생성 페이지로 이동

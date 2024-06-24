@@ -55,6 +55,10 @@ const QnaDetailPage = () => {
     }
   };
 
+  const handleEdit = () => {
+    navigate(`/modify/${question_id}`);
+  };
+
   if (loading) {
     return <p>로딩 중...</p>;
   }
@@ -107,7 +111,9 @@ const QnaDetailPage = () => {
           <div className="actions">
             {parseInt(question.member_id) === parseInt(currentUserId) && (
               <>
-                <button className="edit-button">수정</button>
+                <button onClick={handleEdit} className="edit-button">
+                  수정
+                </button>
                 <button onClick={handleDelete} className="delete-button">
                   삭제
                 </button>
