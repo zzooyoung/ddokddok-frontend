@@ -1,0 +1,96 @@
+.homeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .studyStatusWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .study-status1 {
+    flex: 1; /* This makes each section take equal space */
+    padding: 10px;
+    border: 1px solid rgb(117, 113, 113); /* To visualize the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* Evenly spaces the sub-containers */
+    width: 100%;
+    border-radius: 3%;
+    margin:10px;
+  }
+
+  
+  .sub-container {
+    display: flex;
+    flex-direction: row; /* Aligns the .sub elements horizontally */
+    justify-content: space-around; /* Spaces the .sub elements evenly */
+    width: 100%; /* Takes full width of its parent */
+  }
+  
+  .sub {
+    padding: 5px; /* Optional padding for better visibility */
+    
+  }
+  
+  .study-status2{
+    flex: 1; /* This makes each section take equal space */
+    padding: 10px;
+    border: 1px solid rgb(117, 113, 113); 
+    border-radius: 3%;
+    margin:10px;
+
+  }
+
+  .home-contents {
+    width: 90%;
+    padding: 10px;
+    
+  }
+  
+
+/*
+.layout {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 1;
+  }
+  
+  .column.small {
+    flex: 1;
+  }
+  
+  .column.large {
+    flex: 2;
+  }
+  
+  .stat-card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 10px;
+  }
+  
+  .study-card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 10px;
+  }
+  
+  .study-image {
+    width: 100%;
+    height: auto;
+  }
+
+  */

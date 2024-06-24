@@ -32,6 +32,7 @@ const LoginMain = () => {
         }
       );
       console.log('Login successful:', response.data);
+      console.log('session : ',sessionStorage.getItem("id"));
 
       if(response.data){
         console.log(response.data[0].member_id);
