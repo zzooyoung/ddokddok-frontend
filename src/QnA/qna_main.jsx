@@ -5,6 +5,7 @@ import "./style.css";
 
 const QnaPage = () => {
   const [questions, setQuestions] = useState([]);
+  const [tags, setTags] = useState([]); // 태그 상태 추가
   const [filters, setFilters] = useState({
     keyword: "",
     tagId: "",
@@ -12,14 +13,14 @@ const QnaPage = () => {
     page: 1,
     perPage: 10,
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loginError, setLoginError] = useState(null); // 로그인 오류 상태 추가
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      setLoading(true);
-      setError(null);
       try {
         const response = await axios.get(
           "http://192.168.0.98:8080/question/list",
@@ -28,11 +29,11 @@ const QnaPage = () => {
           }
         );
 
-        console.log("Fetched questions:", response.data.data);
-        setQuestions(response.data.data || []);
+        console.log("Fetched questions:", response.data);
+        setQuestions(response.data || []);
       } catch (error) {
         console.error("Error fetching questions:", error);
-        setError("Failed to fetch questions. Please try again later.");
+        setError("질문을 불러오는 중에 오류가 발생했습니다.");
       } finally {
         setLoading(false);
       }
@@ -41,25 +42,47 @@ const QnaPage = () => {
     fetchQuestions();
   }, [filters]);
 
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await axios.get("http://192.168.0.98:8080/study/tag");
+        setTags(response.data);
+      } catch (error) {
+        console.error("Error fetching tags:", error);
+      }
+    };
+
+    fetchTags();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters((prevFilters) => ({
       ...prevFilters,
       [name]: value,
-      page: name === "perPage" ? 1 : prevFilters.page, // Reset to first page if items per page changes
-    }));
-  };
-
-  const handlePageChange = (direction) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      page: Math.max(prevFilters.page + direction, 1),
     }));
   };
 
   const handleCreateClick = () => {
-    navigate("create");
+    const currentUserId = sessionStorage.getItem("id");
+    if (!currentUserId) {
+      setLoginError("로그인 해주세요.");
+    } else {
+      navigate("create");
+    }
   };
+
+  const handleQuestionClick = (question_id) => {
+    navigate(`/question/${question_id}`);
+  };
+
+  if (loading) {
+    return <p>로딩 중...</p>;
+  }
+
+  if (error) {
+    return <p className="error">{error}</p>;
+  }
 
   return (
     <div>
@@ -76,47 +99,67 @@ const QnaPage = () => {
         />
         <select name="tagId" value={filters.tagId} onChange={handleChange}>
           <option value="">태그 선택</option>
-          <option value="1">태그 1</option>
-          <option value="2">태그 2</option>
+          {tags.map((tag) => (
+            <option key={tag.tag_id} value={tag.tag_id}>
+              {tag.tag_name}
+            </option>
+          ))}
         </select>
-        <select name="sort" value={filters.sort} onChange={handleChange}>
+        {/* <select name="sort" value={filters.sort} onChange={handleChange}>
           <option value="asc">오름차순</option>
           <option value="desc">내림차순</option>
-        </select>
-        <select name="perPage" value={filters.perPage} onChange={handleChange}>
-          <option value={10}>10개씩 보기</option>
-          <option value={20}>20개씩 보기</option>
-          <option value={50}>50개씩 보기</option>
-        </select>
+        </select> */}
+
+        <button onClick={handleCreateClick} className="create-button">
+          QnA 생성 페이지로 이동
+        </button>
+        {loginError && <p className="error">{loginError}</p>}
 
         <div className="qna-list">
-          {loading && <p>Loading...</p>}
-          {error && <p className="error">{error}</p>}
-          {questions.length > 0
-            ? questions.map((question) => (
-                <div className="question" key={question.question_id}>
-                  <div className="question-title">{question.title}</div>
-                  <p className="question-content">{question.content}</p>
-                  <p>작성자: {question.nickname}</p>
-                  <p>
-                    작성일: {new Date(question.created_at).toLocaleString()}
-                  </p>
-                  <p>좋아요 수: {question.likes_count}</p>
+          {questions.length > 0 ? (
+            questions.map((question) => (
+              <div
+                className="question"
+                key={question.question_id}
+                onClick={() => handleQuestionClick(question.question_id)}
+              >
+                <div className="question-stats">
+                  <div className="answers-count">
+                    <p>답변</p>
+                    <p className="count">{question.answers_count || 0}</p>
+                  </div>
                 </div>
-              ))
-            : !loading && <p>질문이 없습니다.</p>}
-        </div>
-
-        <div className="pagination">
-          <button
-            onClick={() => handlePageChange(-1)}
-            disabled={filters.page === 1}
-          >
-            이전 페이지
-          </button>
-          <span>페이지 {filters.page}</span>
-          <button onClick={() => handlePageChange(1)}>다음 페이지</button>
-          <button onClick={handleCreateClick}>질문 생성</button>
+                <div className="question-content-wrapper">
+                  <div className="question-header">
+                    <h2 className="question-title">{question.title}</h2>
+                    <div className="question-user">
+                      <img
+                        src="https://via.placeholder.com/50"
+                        alt="user"
+                        className="user-avatar"
+                      />
+                      <p className="user-name">{question.nickname}</p>
+                    </div>
+                  </div>
+                  <p className="question-content">{question.content}</p>
+                  <div className="question-footer">
+                    {question.tags.map((tag) => (
+                      <span key={tag.tag_id} className="tag">
+                        {tag.tag_name}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="question-footer2">
+                    <span className="created-at">
+                      {new Date(question.created_at).toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>질문이 없습니다.</p>
+          )}
         </div>
       </div>
     </div>

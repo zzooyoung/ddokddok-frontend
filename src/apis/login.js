@@ -10,9 +10,10 @@ export default login;
 
 */
 
-import axios from 'axios';
+import axios from "axios";
 
 export const login = async (loginid, password) => {
+
     try {
         const result = await axios.post('http://localhost:8080/login', { studentNum, password });
         return result.data.data;
