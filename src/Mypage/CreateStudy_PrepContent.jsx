@@ -7,7 +7,7 @@ const CreateStudy_PrepContent = ({params}) => {
 
   return (
     <div className="cateBtn2">
-      <div className="cateBtn2Content">
+      <div style={{flexDirection : "row"}} className="cateBtn2Content">
         {params && params.map((data, idx) => (
           data.status === "prep" && (
             <div onClick={()=>{navigate("/admin")}} key={idx} className="developer-status">

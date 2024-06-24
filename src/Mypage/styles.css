@@ -107,6 +107,7 @@
     text-align: center;
     padding: 10px 0;
     flex-direction: row;
+    display : flex;
 }
 
 .activeBtn {
@@ -124,8 +125,9 @@
 .cateBtn2Content{
     /*padding: 20px;*/
     background-color: rgb(219, 225, 223); 
-    flex-direction: row-reverse;
+    flex-direction: row;
     flex-wrap: wrap;
+    display : flex;
 }
 
 
