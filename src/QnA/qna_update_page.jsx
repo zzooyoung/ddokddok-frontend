@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./style.css";
 
 const QnaUpdatePage = () => {
@@ -11,6 +11,7 @@ const QnaUpdatePage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuestionDetails = async () => {
@@ -47,12 +48,18 @@ const QnaUpdatePage = () => {
           content,
           memberId, // Include member_id in the request data
           studyId,
+          member_id: memberId, // Explicitly include member_id in the request data
         }
       );
 
-      setTitle("");
-      setContent("");
-      setSuccess("질문이 성공적으로 수정되었습니다.");
+      if (response.status === 200) {
+        setTitle("");
+        setContent("");
+        setSuccess("질문이 성공적으로 수정되었습니다.");
+        navigate(`/question/${question_id}`);
+      } else {
+        throw new Error("Failed to update question");
+      }
     } catch (error) {
       console.error("Error updating question:", error);
       setError("질문 수정에 실패했습니다. 다시 시도해주세요.");
