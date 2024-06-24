@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
 function CreateStudy() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image_url, setImageUrl] = useState("");
+  const [imageFile, setImageFile] = useState(null); // 이미지 파일을 저장할 상태 추가
   const [curriculum, setCurriculum] = useState([""]);
   const [mainSubject, setMainSubject] = useState("");
   const [goals, setGoals] = useState("");
@@ -12,7 +12,7 @@ function CreateStudy() {
   const [member_id, setMemberId] = useState("");
 
   const handleAddCurriculum = () => {
-    setCurriculum([...curriculum, ""]); // 새 커리큘럼 입력칸 추가
+    setCurriculum([...curriculum, ""]);
   };
 
   const handleRemoveCurriculum = (index) => {
@@ -27,7 +27,7 @@ function CreateStudy() {
   };
 
   const handleAddTags = () => {
-    setTags([...tags, ""]); // 새 커리큘럼 입력칸 추가
+    setTags([...tags, ""]);
   };
 
   const handleRemoveTags = (index) => {
@@ -42,33 +42,22 @@ function CreateStudy() {
   };
 
   const handleSubmit = async (e) => {
-    console.log("제출되었습니다.");
-    console.log("title : ", title);
-    console.log("content: ", content);
-    console.log("curriculuml:", curriculum);
-    console.log("curriculum: ", Array.isArray(curriculum));
-    console.log("mainSubject: ", mainSubject);
-    console.log("goals : ", goals);
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
 
-    const formData = {
-      title,
-      content,
-      image_url,
-      curriculum,
-      main_subject: mainSubject,
-      goals,
-      tags,
-      member_id,
-    };
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image_url", imageFile); // 필드 이름을 서버와 일치시키기 위해 'image_url'로 설정
+    formData.append("curriculum", JSON.stringify(curriculum));
+    formData.append("main_subject", mainSubject);
+    formData.append("goals", goals);
+    formData.append("tags", JSON.stringify(tags));
+    formData.append("member_id", member_id);
 
     try {
       const response = await fetch("http://192.168.239.11:8080/study", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: formData,
       });
       if (response.ok) {
         console.log("Study created successfully:", await response.json());
@@ -106,13 +95,11 @@ function CreateStudy() {
           </div>
           <div className="form-group">
             <label htmlFor="image_url">이미지</label>
-            <button
+            <input
+              type="file"
               id="image_url"
-              value={image_url}
-              onChange={(e) => setImageUrl(e.target.value)}
-            >
-              이미지 업로드
-            </button>
+              onChange={(e) => setImageFile(e.target.files[0])}
+            />
           </div>
 
           <div className="form-group">
@@ -145,7 +132,6 @@ function CreateStudy() {
               커리큘럼 추가
             </button>
           </div>
-          {/* 커리큘럼 입력 끝 */}
 
           <div className="form-group">
             <label htmlFor="main_subject">주제</label>
