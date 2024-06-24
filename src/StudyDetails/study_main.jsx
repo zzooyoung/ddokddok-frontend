@@ -73,7 +73,7 @@ const Study = (studyId) => {
     const fetchStudies = async () => {
       try {
         const response = await axios.post(
-          "http://192.168.0.98:8080/study/detailList?studyId=1",
+          "http://192.168.239.11:8080/study/detailList?studyId=1",
           null,
           {
             params: {

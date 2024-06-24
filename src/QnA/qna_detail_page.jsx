@@ -17,7 +17,7 @@ const QnaDetailPage = () => {
     const fetchQuestion = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.0.98:8080/question/id/${question_id}`
+          `http://192.168.239.11:8080/question/id/${question_id}`
         );
         console.log(response.data);
         setQuestion(response.data.question); // 응답 데이터 구조에 맞게 설정
@@ -37,7 +37,7 @@ const QnaDetailPage = () => {
   const handleDelete = async () => {
     try {
       const response = await axios.post(
-        "http://192.168.0.98:8080/question/delete",
+        "http://192.168.239.11:8080/question/delete",
         {
           questionId: question_id,
           memberId: currentUserId,

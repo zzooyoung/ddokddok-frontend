@@ -17,7 +17,7 @@ const QnaUpdatePage = () => {
     const fetchQuestionDetails = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.0.98:8080/question/id/${question_id}`
+          `http://192.168.239.11:8080/question/id/${question_id}`
         );
         const questionData = response.data.question;
         setTitle(questionData.title);
@@ -41,7 +41,7 @@ const QnaUpdatePage = () => {
     try {
       const memberId = sessionStorage.getItem("id"); // Get member_id from sessionStorage
       const response = await axios.post(
-        "http://192.168.0.98:8080/question/update",
+        "http://192.168.239.11:8080/question/update",
         {
           questionId: question_id,
           title,

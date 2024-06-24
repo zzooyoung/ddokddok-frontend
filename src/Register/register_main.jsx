@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './styles.css';
-import { useNavigate } from 'react-router-dom';
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 const RegisterMain = () => {
-    const [nickname, setNickname] = useState('');
-    const [id, setId] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-    
-    const handleNicknameChange = (e) => {
-        setNickname(e.target.value);
-    };
-    
-    const handleIdChange = (e) => {
-        setId(e.target.value);
-    };
+  const [nickname, setNickname] = useState("");
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
+  const handleNicknameChange = (e) => {
+    setNickname(e.target.value);
+  };
+
+  const handleIdChange = (e) => {
+    setId(e.target.value);
+  };
 
     const handleSubmit = async (e) => {
         e.preventDefault();

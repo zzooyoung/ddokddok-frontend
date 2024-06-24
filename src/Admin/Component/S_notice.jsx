@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./notice_styles.css";
-import CreateNoticeModal from './CreateNoticeModal';
+import CreateNoticeModal from "./CreateNoticeModal";
 
 const formatTime = (isoDate) => {
   const date = new Date(isoDate);
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const ampm = hours >= 12 ? "PM" : "AM";
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0' + minutes : minutes;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
   return `${hours}:${minutes} ${ampm}`;
 };
 
 function S_notice() {
   const [notices, setNotices] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredNotices, setFilteredNotices] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,13 +29,13 @@ function S_notice() {
     const fetchNoticeData = async () => {
       try {
         const response = await axios.post(
-          "http://192.168.0.98:8080/notice/list",
+          "http://192.168.239.11:8080/notice/list",
           null,
           {
             params: {
-              sort: 'latest', // 'latest' 대신 정렬 상태 변수 사용
+              sort: "latest", // 'latest' 대신 정렬 상태 변수 사용
               page: 1,
-              perPage: 10
+              perPage: 10,
             },
           }
         );
@@ -52,7 +52,7 @@ function S_notice() {
   }, []);
 
   useEffect(() => {
-    const results = notices.filter(notice =>
+    const results = notices.filter((notice) =>
       notice.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredNotices(results);
@@ -68,12 +68,11 @@ function S_notice() {
 
   return (
     <div>
-
       <div>
         <button onClick={openModal}>공지 작성하기</button>
         <CreateNoticeModal isOpen={isModalOpen} onClose={closeModal} />
-    </div>
-      
+      </div>
+
       <div className="search-container">
         <input
           type="text"
@@ -84,7 +83,7 @@ function S_notice() {
         />
       </div>
 
-      {filteredNotices.map(notice => (
+      {filteredNotices.map((notice) => (
         <div key={notice.notice_id} className="notice-wrapper">
           <div className="title">{notice.title}</div>
           <div className="content">{notice.content}</div>
@@ -96,7 +95,6 @@ function S_notice() {
 }
 
 export default S_notice;
-
 
 /*
 import React, { useState, useEffect } from "react";

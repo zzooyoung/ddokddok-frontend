@@ -7,14 +7,14 @@ const formatDateAndTime = (isoDate) => {
   let year = date.getFullYear().toString().slice(-2);
   let month = date.getMonth() + 1;
   let day = date.getDate();
-  month = month < 10 ? '0' + month : month;
-  day = day < 10 ? '0' + day : day;
+  month = month < 10 ? "0" + month : month;
+  day = day < 10 ? "0" + day : day;
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  const ampm = hours >= 12 ? 'AM' : 'PM';
+  const ampm = hours >= 12 ? "AM" : "PM";
   hours = hours % 12;
   hours = hours ? hours : 12;
-  minutes = minutes < 10 ? '0' + minutes : minutes;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
   return `${year}-${month}-${day} ${hours}:${minutes} ${ampm}`;
 };
 
@@ -25,7 +25,9 @@ function S_member() {
   useEffect(() => {
     const fetchMemberData = async () => {
       try {
-        const response = await axios.get(`http://192.168.0.98:8080/study/member?studyId=${1}`);
+        const response = await axios.get(
+          `http://192.168.239.11:8080/study/member?studyId=${1}`
+        );
         setMembers(response.data);
         console.log(response.data);
       } catch (error) {
@@ -40,53 +42,58 @@ function S_member() {
   console.log(sessionStorage.getItem("id"));
 
   const handleAccept = async (memberId) => {
-    const memberToAccept = members.find(member => member.member_id === memberId);
+    const memberToAccept = members.find(
+      (member) => member.member_id === memberId
+    );
     if (memberToAccept) {
       try {
         // Send a POST request to the server to update the member status
-        await axios.post(`http://192.168.0.98:8080/study/member/accept`, {
-
+        await axios.post(`http://192.168.239.11:8080/study/member/accept`, {
           member_id: members.member_id,
-          memberId: sessionStorage.getItem("id"), 
-          studyId: memberToAccept.study_id, 
+          memberId: sessionStorage.getItem("id"),
+          studyId: memberToAccept.study_id,
         });
-  
+
         // Update local state to reflect the new status of the member
-        setMembers(prevMembers => prevMembers.map(member =>
-          member.member_id === memberId ? { ...member, request_status: "APPROVED" } : member
-        ));
+        setMembers((prevMembers) =>
+          prevMembers.map((member) =>
+            member.member_id === memberId
+              ? { ...member, request_status: "APPROVED" }
+              : member
+          )
+        );
       } catch (error) {
         console.error("Error accepting member:", error);
       }
     }
   };
-  
-
 
   const handleReject = async (memberId) => {
-    const memberToAccept = members.find(member => member.member_id === memberId);
+    const memberToAccept = members.find(
+      (member) => member.member_id === memberId
+    );
     if (memberToAccept) {
       try {
         // Send a POST request to the server to update the member status
-        await axios.post(`http://192.168.0.98:8080/study/member/refuse`, {
+        await axios.post(`http://192.168.239.11:8080/study/member/refuse`, {
           member_id: sessionStorage.getItem("id"),
           memberId: memberId, // Make sure the field names match what your API expects
           studyId: memberToAccept.study_id, // Assuming study_id is available in the member object
         });
-  
+
         // Update local state to reflect the new status of the member
-        setMembers(prevMembers => prevMembers.map(member =>
-          member.member_id === memberId ? { ...member, request_status: "REJECTED" } : member
-        ));
+        setMembers((prevMembers) =>
+          prevMembers.map((member) =>
+            member.member_id === memberId
+              ? { ...member, request_status: "REJECTED" }
+              : member
+          )
+        );
       } catch (error) {
         console.error("Error accepting member:", error);
       }
     }
   };
-  
-
-
-
 
   if (loading) {
     return <div>Loading...</div>;
@@ -105,16 +112,22 @@ function S_member() {
           </tr>
         </thead>
         <tbody>
-          {members.filter(member => member.request_status === "APPROVED").map((member) => (
-            <tr key={member.study_member_id} className="memberContent">
-              <td><strong>No {member.study_member_id}</strong></td>
-              <td>{member.nickname}</td>
-              <td>{formatDateAndTime(member.created_at)}</td>
-              <td>
-                <button onClick={() => handleReject(member.member_id)}>X</button>
-              </td>
-            </tr>
-          ))}
+          {members
+            .filter((member) => member.request_status === "APPROVED")
+            .map((member) => (
+              <tr key={member.study_member_id} className="memberContent">
+                <td>
+                  <strong>No {member.study_member_id}</strong>
+                </td>
+                <td>{member.nickname}</td>
+                <td>{formatDateAndTime(member.created_at)}</td>
+                <td>
+                  <button onClick={() => handleReject(member.member_id)}>
+                    X
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
 
@@ -129,17 +142,25 @@ function S_member() {
           </tr>
         </thead>
         <tbody>
-          {members.filter(member => member.request_status === "PENDING").map((member) => (
-            <tr key={member.study_member_id} className="memberContent">
-              <td><strong>No {member.study_member_id}</strong></td>
-              <td>{member.nickname}</td>
-              <td>{formatDateAndTime(member.created_at)}</td>
-              <td>
-                <button onClick={() => handleAccept(member.member_id)}>O</button>
-                <button onClick={() => handleReject(member.member_id)}>X</button>
-              </td>
-            </tr>
-          ))}
+          {members
+            .filter((member) => member.request_status === "PENDING")
+            .map((member) => (
+              <tr key={member.study_member_id} className="memberContent">
+                <td>
+                  <strong>No {member.study_member_id}</strong>
+                </td>
+                <td>{member.nickname}</td>
+                <td>{formatDateAndTime(member.created_at)}</td>
+                <td>
+                  <button onClick={() => handleAccept(member.member_id)}>
+                    O
+                  </button>
+                  <button onClick={() => handleReject(member.member_id)}>
+                    X
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

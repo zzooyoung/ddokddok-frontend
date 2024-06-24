@@ -18,7 +18,7 @@ const QnaCreatePage = () => {
       try {
         const memberId = sessionStorage.getItem("id");
         const response = await axios.post(
-          "http://192.168.0.98:8080/mypage/show_study/joined?sort=latest&page=1&perPage=20",
+          "http://192.168.239.11:8080/mypage/show_study/joined?sort=latest&page=1&perPage=20",
           {
             sort: "latest",
             page: 1,
@@ -44,7 +44,7 @@ const QnaCreatePage = () => {
 
     try {
       const memberId = sessionStorage.getItem("id");
-      const response = await axios.post("http://192.168.0.98:8080/question", {
+      const response = await axios.post("http://192.168.239.11:8080/question", {
         title,
         content,
         studyId: selectedStudy,

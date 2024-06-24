@@ -16,7 +16,9 @@ const StudyList = () => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await axios.get("http://192.168.0.98:8080/study/tag");
+        const response = await axios.get(
+          "http://192.168.239.11:8080/study/tag"
+        );
         setTags(response.data);
       } catch (error) {
         console.error("Error fetching tags:", error);
@@ -32,7 +34,7 @@ const StudyList = () => {
       setLoading(true); // 데이터를 다시 가져올 때 로딩 상태를 true로 설정
       try {
         const response = await axios.get(
-          "http://192.168.0.98:8080/study/list",
+          "http://192.168.239.11:8080/study/list",
           {
             params: {
               page: 1,
