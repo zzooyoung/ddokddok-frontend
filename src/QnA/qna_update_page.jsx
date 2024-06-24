@@ -1,17 +1,36 @@
-// src/components/QnaCreatePage.js
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./style.css";
 
-const QnaCreatePage = () => {
-  const { study_id } = useParams();
+const QnaUpdatePage = () => {
+  const { question_id } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [studyId, setStudyId] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchQuestionDetails = async () => {
+      try {
+        const response = await axios.get(
+          `http://192.168.0.98:8080/question/id/${question_id}`
+        );
+        const questionData = response.data.question;
+        setTitle(questionData.title);
+        setContent(questionData.content);
+        setStudyId(questionData.study_id);
+      } catch (error) {
+        console.error("Error fetching question details:", error);
+        setError("질문 데이터를 불러오는 중에 오류가 발생했습니다.");
+      }
+    };
+
+    fetchQuestionDetails();
+  }, [question_id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,22 +39,29 @@ const QnaCreatePage = () => {
     setSuccess(null);
 
     try {
+      const memberId = sessionStorage.getItem("id"); // Get member_id from sessionStorage
       const response = await axios.post(
         "http://192.168.0.98:8080/question/update",
         {
-          question_id,
+          questionId: question_id,
           title,
           content,
-          member_id,
-          study_id,
+          memberId, // Include member_id in the request data
+          studyId,
+          member_id: memberId, // Explicitly include member_id in the request data
         }
       );
 
-      setTitle("");
-      setContent("");
-      setSuccess("질문이 성공적으로 수정되었습니다.");
+      if (response.status === 200) {
+        setTitle("");
+        setContent("");
+        setSuccess("질문이 성공적으로 수정되었습니다.");
+        navigate(`/question/${question_id}`);
+      } else {
+        throw new Error("Failed to update question");
+      }
     } catch (error) {
-      console.error("Error creating question:", error);
+      console.error("Error updating question:", error);
       setError("질문 수정에 실패했습니다. 다시 시도해주세요.");
     } finally {
       setLoading(false);
@@ -68,7 +94,7 @@ const QnaCreatePage = () => {
           />
         </div>
         <button type="submit" disabled={loading}>
-          {loading ? "생성 중..." : "질문 생성"}
+          {loading ? "수정 중..." : "질문 수정"}
         </button>
         {error && <p className="error">{error}</p>}
         {success && <p className="success">{success}</p>}
@@ -77,4 +103,4 @@ const QnaCreatePage = () => {
   );
 };
 
-export default QnaCreatePage;
+export default QnaUpdatePage;

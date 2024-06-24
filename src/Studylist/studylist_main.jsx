@@ -62,13 +62,22 @@ const StudyList = () => {
   };
 
   const handleTagChange = (tagId) => {
-    setSelectedTag(tagId);
+    const selectedTag =
+      tags.find((tag) => tag.tag_id === tagId)?.tag_name || null;
+    setSelectedTag(selectedTag);
+  };
+
+  const handleShowAll = () => {
+    setSelectedTag(null);
   };
 
   return (
     <div className="study-list-screen">
       <div className="div-2">
         <div className="component-container">
+          <button className="component" onClick={handleShowAll}>
+            전체 보기
+          </button>
           {tags.map((tag) => (
             <TagComponent
               key={tag.tag_id}
@@ -83,21 +92,27 @@ const StudyList = () => {
           <button onClick={() => handleSortChange("oldest")}>오래된 순</button>
         </div>
         <div className="divwrapper-container">
-          {studies.map((study) => (
-            <StudyCatalogue
-              key={study.study_id}
-              className="div-wrapper"
-              title={study.title}
-              image={study.image_url}
-              studyId={study.study_id} // studyId를 전달합니다.
-            />
-          ))}
+          {studies
+            .filter(
+              (study) =>
+                !selectedTag ||
+                study.tags.some((tag) => tag.tag_name === selectedTag)
+            )
+            .map((study) => (
+              <StudyCatalogue
+                key={study.study_id}
+                className="div-wrapper"
+                title={study.title}
+                image={study.image_url}
+                studyId={study.study_id} // studyId를 전달합니다.
+              />
+            ))}
         </div>
-        <div className="navigation">
+        {/* <div className="navigation">
           <div className="nav-item">이전</div>
           <div className="page-info">1 / 1</div>
-          <div className="nav-item">다음</div>
-        </div>
+          <div className="nav-item">다음</div>            페이지 넘기는 부분 -미구현(하드코딩)
+        </div> */}
       </div>
     </div>
   );

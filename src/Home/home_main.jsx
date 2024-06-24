@@ -67,7 +67,7 @@ const Main = () => {
               className="div-wrapper-img"
               title={study.title}
               image={study.image_url}
-              studyId={study.study_id} // studyId를 전달합니다.
+              studyId={study.study_id}
             />
           ))}
         </div>

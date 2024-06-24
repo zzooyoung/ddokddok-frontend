@@ -72,6 +72,125 @@ input[type="number"] {
 .question:last-child {
   border-bottom: none;
 }
+/* src/components/style.css */
+
+.qna {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.qna .text-wrapper {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.qna .create-button {
+  display: block;
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.qna .create-button:hover {
+  background-color: #0056b3;
+}
+
+.qna-list .question {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1em;
+  padding: 1em;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.qna-list .question:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  border-right: 1px solid #ddd;
+  margin-right: 1em;
+}
+
+.question-stats .answers-count {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.question-content-wrapper {
+  flex: 1;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-user {
+  display: flex;
+  align-items: center;
+}
+
+.question-user .user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0.5em;
+}
+
+.question-title {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.question-content {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.question-footer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.question-footer2 {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.tag {
+  background-color: #e0f7fa;
+  color: #007bff;
+  padding: 0.3em 0.5em;
+  border-radius: 4px;
+  margin-right: 0.5em;
+}
+
+.created-at {
+  color: #888;
+}
 
 /* qna_create css */
 .qna-form {
