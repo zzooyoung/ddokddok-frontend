@@ -28,7 +28,7 @@
     /*background-color: #007BFF;*/
     font-size:30px;
     font-weight:bold;
-    text-align: left;
+    text-align: center;
     padding: 10px;
     color: black;
     margin-bottom: 5px; /* Spacing between title and content */
@@ -36,9 +36,10 @@
 
   .content{
     padding: 10px;
-    text-align: left;
+    text-align: center; /* 정주영 left -> center 이상생기면 수정 바람*/
     color: black;
     margin-bottom: 5px; /* Spacing between title and content */
+    flex-direction: row;
   }
   
   .created_at {

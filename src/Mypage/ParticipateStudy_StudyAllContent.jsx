@@ -10,8 +10,8 @@ const ParticipateStudy_StudyAllContent = ({ params }) => {
     <div className="cateBtn2">
         <div className="cateBtn2Content">
           {params && params.map((data, idx) => (
-            <div className="developer-status">
-              <div onClick={navigate}>
+            <div onClick={()=>{navigate("/study#")}} className="developer-status">
+              <div>
                 <img className="study-img" src={imgWithUrl(data.image_url)} alt="Study" /> {/* Ensure imgWithUrl is working */}
               </div>
               <div className="study-info">

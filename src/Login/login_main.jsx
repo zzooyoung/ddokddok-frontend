@@ -32,7 +32,7 @@ const LoginMain = () => {
         console.log(response.data[0].member_id);
         sessionStorage.setItem("id", response.data[0].member_id);
         console.log(sessionStorage.getItem("id"));
-        navigate("/mypage", { state: { param1: response.data } });
+        navigate('/');
       }
     } catch (error) {
       console.error("Error logging in:", error);
