@@ -23,7 +23,7 @@ const QnaPage = () => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.0.98:8080/question/list",
+          "http://192.168.239.11:8080/question/list",
           {
             params: filters,
           }
@@ -45,7 +45,9 @@ const QnaPage = () => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await axios.get("http://192.168.0.98:8080/study/tag");
+        const response = await axios.get(
+          "http://192.168.239.11:8080/study/tag"
+        );
         setTags(response.data);
       } catch (error) {
         console.error("Error fetching tags:", error);

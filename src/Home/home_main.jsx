@@ -15,7 +15,7 @@ const Main = () => {
     const fetchStudies = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.0.98:8080/study/list",
+          "http://192.168.239.11:8080/study/list",
           null,
           {
             params: {

@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import './styles.css';
+import React, { useState, useEffect } from "react";
+import "./styles.css";
 
 function CreateStudy() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [image_url, setImageUrl] = useState('');
-  const [curriculum, setCurriculum] = useState(['']);
-  const [mainSubject, setMainSubject] = useState('');
-  const [goals, setGoals] = useState('');
-  const [tags, setTags] = useState(['']);
-  const [member_id, setMemberId] = useState('');
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image_url, setImageUrl] = useState("");
+  const [curriculum, setCurriculum] = useState([""]);
+  const [mainSubject, setMainSubject] = useState("");
+  const [goals, setGoals] = useState("");
+  const [tags, setTags] = useState([""]);
+  const [member_id, setMemberId] = useState("");
 
-  
   const handleAddCurriculum = () => {
-    setCurriculum([...curriculum, '']); // 새 커리큘럼 입력칸 추가
+    setCurriculum([...curriculum, ""]); // 새 커리큘럼 입력칸 추가
   };
 
-  const handleRemoveCurriculum = index => {
+  const handleRemoveCurriculum = (index) => {
     const newCurriculum = curriculum.filter((_, i) => i !== index);
     setCurriculum(newCurriculum);
   };
@@ -27,12 +26,11 @@ function CreateStudy() {
     setCurriculum(newCurriculum);
   };
 
-
   const handleAddTags = () => {
-    setTags([...tags, '']); // 새 커리큘럼 입력칸 추가
+    setTags([...tags, ""]); // 새 커리큘럼 입력칸 추가
   };
 
-  const handleRemoveTags = index => {
+  const handleRemoveTags = (index) => {
     const newTags = tags.filter((_, i) => i !== index);
     setTags(newTags);
   };
@@ -43,17 +41,16 @@ function CreateStudy() {
     setTags(newTags);
   };
 
-
   const handleSubmit = async (e) => {
-    console.log("제출되었습니다.")
-    console.log("title : ",title);
-    console.log("content: ",content);
-    console.log("curriculuml:",curriculum);
-    console.log("curriculum: ",Array.isArray(curriculum));
-    console.log("mainSubject: ",mainSubject);
+    console.log("제출되었습니다.");
+    console.log("title : ", title);
+    console.log("content: ", content);
+    console.log("curriculuml:", curriculum);
+    console.log("curriculum: ", Array.isArray(curriculum));
+    console.log("mainSubject: ", mainSubject);
     console.log("goals : ", goals);
     e.preventDefault(); // Prevent default form submission behavior
-    
+
     const formData = {
       title,
       content,
@@ -62,26 +59,24 @@ function CreateStudy() {
       main_subject: mainSubject,
       goals,
       tags,
-      member_id
+      member_id,
     };
 
     try {
-      const response = await fetch('http://192.168.0.98:8080/study', {
-        
-        method: 'POST',
+      const response = await fetch("http://192.168.239.11:8080/study", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        console.log('Study created successfully:', await response.json());
+        console.log("Study created successfully:", await response.json());
       } else {
-        console.error('Failed to create study:', response);
+        console.error("Failed to create study:", response);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     }
   };
 
@@ -92,47 +87,84 @@ function CreateStudy() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">스터디제목</label>
-            <input id="title" value={title} onChange={e => setTitle(e.target.value)} placeholder='스터디 제목을 입력해주세요'/>
+            <input
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="스터디 제목을 입력해주세요"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="content">소개글</label>
-            <textarea id="content" value={content} onChange={e => setContent(e.target.value)} placeholder='소개글을 입력해주세요' style={{ width: '100%', height: '150px' }} />
+            <textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="소개글을 입력해주세요"
+              style={{ width: "100%", height: "150px" }}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="image_url">이미지</label>
-            <button id="image_url" value={image_url} onChange={e => setImageUrl(e.target.value)}>이미지 업로드</button>
+            <button
+              id="image_url"
+              value={image_url}
+              onChange={(e) => setImageUrl(e.target.value)}
+            >
+              이미지 업로드
+            </button>
           </div>
-
-
-
 
           <div className="form-group">
             <label htmlFor="curriculum">커리큘럼</label>
             {curriculum.map((item, index) => (
-              <div key={index}  className="curriculum-row">
+              <div key={index} className="curriculum-row">
                 <input
                   type="text"
                   value={item}
-                  onChange={e => handleChangeCurriculum(e.target.value, index)}
-                  placeholder='스터디 커리큘럼을 입력해주세요'
+                  onChange={(e) =>
+                    handleChangeCurriculum(e.target.value, index)
+                  }
+                  placeholder="스터디 커리큘럼을 입력해주세요"
                   className="curriculum-input"
                 />
-                <button type="button" onClick={() => handleRemoveCurriculum(index)} className="remove-btn"><strong>-</strong></button>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveCurriculum(index)}
+                  className="remove-btn"
+                >
+                  <strong>-</strong>
+                </button>
               </div>
             ))}
-            <button type="button" onClick={handleAddCurriculum} className="add-btn">커리큘럼 추가</button>
+            <button
+              type="button"
+              onClick={handleAddCurriculum}
+              className="add-btn"
+            >
+              커리큘럼 추가
+            </button>
           </div>
           {/* 커리큘럼 입력 끝 */}
 
           <div className="form-group">
             <label htmlFor="main_subject">주제</label>
-            <input id="main_subject" value={mainSubject} onChange={e => setMainSubject(e.target.value)} placeholder='스터디 주제를 입력해주세요'/>
+            <input
+              id="main_subject"
+              value={mainSubject}
+              onChange={(e) => setMainSubject(e.target.value)}
+              placeholder="스터디 주제를 입력해주세요"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="goals">목표</label>
-            <input id="goals" value={goals} onChange={e => setGoals(e.target.value)} placeholder='스터디 목표를 입력해주세요'/>
+            <input
+              id="goals"
+              value={goals}
+              onChange={(e) => setGoals(e.target.value)}
+              placeholder="스터디 목표를 입력해주세요"
+            />
           </div>
-
 
           <div className="form-group">
             <label htmlFor="tags">태그</label>
@@ -141,21 +173,36 @@ function CreateStudy() {
                 <input
                   type="text"
                   value={item}
-                  onChange={e => handleChangeTags(e.target.value, index)}
-                  placeholder='스터디 태그 입력해주세요'
+                  onChange={(e) => handleChangeTags(e.target.value, index)}
+                  placeholder="스터디 태그 입력해주세요"
                   className="tags-input"
                 />
-                <button type="button" onClick={() => handleRemoveTags(index)} className="remove-btn"><strong>-</strong></button>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveTags(index)}
+                  className="remove-btn"
+                >
+                  <strong>-</strong>
+                </button>
               </div>
             ))}
-            <button type="button" onClick={handleAddTags} className="add-btn">태그 추가</button>
+            <button type="button" onClick={handleAddTags} className="add-btn">
+              태그 추가
+            </button>
           </div>
-         
+
           <div className="form-group">
             <label htmlFor="member_id">멤버아이디</label>
-            <input id="member_id" value={member_id} onChange={e => setMemberId(e.target.value)} placeholder='스터디 멤버 아이디를 입력해주세요'/>
+            <input
+              id="member_id"
+              value={member_id}
+              onChange={(e) => setMemberId(e.target.value)}
+              placeholder="스터디 멤버 아이디를 입력해주세요"
+            />
           </div>
-          <button type="submit" className="submit-button">등록</button>
+          <button type="submit" className="submit-button">
+            등록
+          </button>
         </form>
       </div>
     </div>

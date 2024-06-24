@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const StudyCatalogue = ({ className, title, image, studyId }) => {
-  const imageUrl = `http://192.168.0.98:8080/${image}`;
+  const imageUrl = `http://192.168.239.11:8080/${image}`;
   const Navigate = useNavigate();
 
   const handleClick = () => {

@@ -10,8 +10,6 @@ import Member from "./Component/S_member";
 import Hw from "./Component/S_hw";
 import Calender from "./Component/S_calender";
 
-
-
 const StudyCard = ({ category, level, title, date, imageUrl }) => (
   <div className="study-card">
     <div className="study-info">
@@ -59,7 +57,7 @@ const AdminMain = (studyId) => {
     const fetchStudies = async () => {
       try {
         const response = await axios.post(
-          "http://192.168.0.98:8080/study/detailList?studyId=1",
+          "http://192.168.239.11:8080/study/detailList?studyId=1",
           null,
           {
             params: {
