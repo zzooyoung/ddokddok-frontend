@@ -1,11 +1,25 @@
-
+import imgWithUrl from "../apis/imgWithUrl";
 // OngoingContent.js
-const CreateStudy_OngoingContent = () => {
+const CreateStudy_OngoingContent = ({ params }) => {
+  console.log("params:", params);
+
   return (
-    <div className="cateBtn2Content">
-      <h2>진행 중인 스터디 내용</h2>
-      {/* 추가적인 내용들 */}
-      <p>여기에 적는내용들임ㅎㅎ</p>
+    <div className="cateBtn2">
+      <div className="cateBtn2Content">
+        {params && params.map((data, idx) => (
+          data.status === 'ing' && (
+            <div key={idx} className="developer-status">
+              <div className="study-icon">
+                <img src={imgWithUrl(data.image_url)} alt="Study" /> {/* Ensure imgWithUrl is working */}
+              </div>
+              <div className="study-info">
+                <p className="study-status">{data.status === 'ing' ? "진행중" : data.status}</p>
+              </div>
+              <p className="study-detail">{data.title}</p>
+            </div>
+          )
+        ))}
+      </div>
     </div>
   );
 };
