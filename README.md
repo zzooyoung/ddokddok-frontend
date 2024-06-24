@@ -9,3 +9,8 @@ npm : 10.5.2
 
 # front 실행
 - ```terminal``` 실행 -> ```npm run start``` 명령어 입력 -> http://localhost:3000/ 열림
+
+# node packages
+npm install
+npm install axios
+npm install --save styled-components

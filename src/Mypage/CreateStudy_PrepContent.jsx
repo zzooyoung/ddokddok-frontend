@@ -1,11 +1,27 @@
+import imgWithUrl from "../apis/imgWithUrl";
 
-const CreateStudy_PrepContent = () => {
-    return (
+const CreateStudy_PrepContent = ({params}) => {
+  console.log("params:", params);
+
+  return (
+    <div className="cateBtn2">
       <div className="cateBtn2Content">
-        <h2>오늘 준비중인 스터디 내용</h2>
-        <p>안녕 왜 출력아 이ㅗㄴ너ㅏ</p>
+        {params && params.map((data, idx) => (
+          data.status === "prep" && (
+            <div key={idx} className="developer-status">
+              <div className="study-icon">
+                <img src={imgWithUrl(data.image_url)} alt="Study" /> {/* Ensure imgWithUrl is working */}
+              </div>
+              <div className="study-info">
+                <p className="study-status">{data.status === "prep" ? "준비중" : data.status}</p>
+              </div>
+              <p className="study-detail">{data.title}</p>
+            </div>
+          )
+        ))}
       </div>
-    );
+    </div>
+  );
   };
   
   export default CreateStudy_PrepContent;  // 수정: 정확한 이름으로 export

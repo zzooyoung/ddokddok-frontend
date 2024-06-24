@@ -106,12 +106,14 @@ const Mypage = () => {
       {/* Profile Section */}
       <Link to="/admin">관리자페이지</Link>
       <div className="profile-container">
-        <h2 className="title">나의 프로필</h2>
-        <div className="user_id">{nickname}</div>
-        <div>
-          <img className='user_profile' src={imgWithUrl(profile)} alt="Profile"  />
+        {/* <h2 className="title">나의 프로필</h2> */}
+        <div className='profile-div'>
+          <h2 className="user_id">{nickname}</h2>
+          <div>
+            <img className='user_profile' src={imgWithUrl(profile)} alt="Profile"  />
+          </div>
+          {/* <button className="profileEditBtn">개인정보 수정</button> */}
         </div>
-        <button className="profileEditBtn">개인정보 수정</button>
       </div>
 
       {/* Participated Studies Section */}
@@ -168,9 +170,9 @@ const Mypage = () => {
           </button>
         </div>
         <div>
-          {activeCategory2 === 'prep' && <CreateStudy_PrepContent param={createList} />}
-          {activeCategory2 === 'ongoing' && <CreateStudy_OngoingContent param={createList} />}
-          {activeCategory2 === 'finished' && <CreateStudy_FinishedContent param={createList} />}
+          {activeCategory2 === 'prep' && <CreateStudy_PrepContent params={createList} />}
+          {activeCategory2 === 'ongoing' && <CreateStudy_OngoingContent params={createList} />}
+          {activeCategory2 === 'finished' && <CreateStudy_FinishedContent params={createList} />}
         </div>
       </div>
     </div>
