@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './styles.css';
+import default_img from '../assets/default_img.png';
 import { useLocation } from 'react-router-dom';
 
 // Import content components
@@ -39,7 +40,8 @@ const Mypage = () => {
 
         console.log("User info:", response.data);
         setNickName(response.data.nickname);
-        setProfile(response.data.profile_image_url);
+        
+        setProfile(response.data.profile_image_url == null ? default_img : imgWithUrl(response.data.profile_image_url));
       } catch (error) {
         console.error("Error fetching user info:", error);
       }
@@ -104,13 +106,12 @@ const Mypage = () => {
     
     <div className="mypage-container">
       {/* Profile Section */}
-      <Link to="/admin">관리자페이지</Link>
       <div className="profile-container">
         {/* <h2 className="title">나의 프로필</h2> */}
         <div className='profile-div'>
           <h2 className="user_id">{nickname}</h2>
           <div>
-            <img className='user_profile' src={imgWithUrl(profile)} alt="Profile"  />
+            <img className='user_profile' src={profile} alt="Profile"  />
           </div>
           {/* <button className="profileEditBtn">개인정보 수정</button> */}
         </div>

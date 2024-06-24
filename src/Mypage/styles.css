@@ -106,6 +106,7 @@
     transition: color 0.3s ease;
     text-align: center;
     padding: 10px 0;
+    flex-direction: row;
 }
 
 .activeBtn {
@@ -118,15 +119,12 @@
     /*background-color: gray;*/
 }
 
-.cateBtn2 {
-  flex-direction: row-reverse;
-}
 
 
 .cateBtn2Content{
     /*padding: 20px;*/
     background-color: rgb(219, 225, 223); 
-    /* flex-direction: row-reverse; */
+    flex-direction: row-reverse;
     flex-wrap: wrap;
 }
 

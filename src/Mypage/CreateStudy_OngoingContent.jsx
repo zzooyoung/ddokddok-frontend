@@ -1,6 +1,9 @@
 import imgWithUrl from "../apis/imgWithUrl";
+import { useNavigate } from "react-router-dom";
+
 // OngoingContent.js
 const CreateStudy_OngoingContent = ({ params }) => {
+  const navigate = useNavigate();
   console.log("params:", params);
 
   return (
@@ -8,7 +11,7 @@ const CreateStudy_OngoingContent = ({ params }) => {
       <div className="cateBtn2Content">
         {params && params.map((data, idx) => (
           data.status === 'ing' && (
-            <div key={idx} className="developer-status">
+            <div onClick={()=>{navigate("/admin")}} key={idx} className="developer-status">
               <div className="study-icon">
                 <img src={imgWithUrl(data.image_url)} alt="Study" /> {/* Ensure imgWithUrl is working */}
               </div>

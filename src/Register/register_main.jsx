@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
-
 
 const RegisterMain = () => {
     const [nickname, setNickname] = useState('');
@@ -23,42 +22,37 @@ const RegisterMain = () => {
         setPassword(e.target.value);
     };
 
-    const HandleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // 입력된 정보를 출력
-        useEffect(() => {
-            const FetchMyAPI = async () => {
-              try {
-                const response = await axios.post(
-                  "http://192.168.0.98:8080/login/sign-up",
-                  null,
-                  {
-                    params: {
-                      loginid : id,
-                      password : password,
-                      nickname : nickname
-                    },
-                  }
-                );
-              } catch (error) {
-                console.error("Error fetching studies:", error);
-              } finally {
-                setLoading(false);
-              }
-            };
-            FetchMyAPI();
-            alert("회원가입에 성공하였습니다.")
+        setLoading(true);
+
+        try {
+          console.log(id, password, nickname)
+            const response = await axios.post(
+                "http://192.168.0.98:8080/login/sign-up",
+                {
+                  loginid: id,
+                  password: password,
+                  nickname: nickname
+                }
+            );
+            alert("회원가입에 성공하였습니다.");
             navigate("/login");
-          }, []);
+        } catch (error) {
+            console.error("Error during sign-up:", error);
+            alert("회원가입에 실패하였습니다. 다시 시도해주세요.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div>
             <div className="register-container">
                 <h2>회원가입</h2>
-                <form onSubmit={HandleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="id">닉네임</label>
+                        <label htmlFor="nickname">닉네임</label>
                         <input
                             placeholder='닉네임'
                             id="nickname"
@@ -88,9 +82,9 @@ const RegisterMain = () => {
                             required
                         />
                     </div>
-
-
-                    <button type="submit" className="register-button">가입하기</button>
+                    <button type="submit" className="register-button" disabled={loading}>
+                        {loading ? "가입 중..." : "가입하기"}
+                    </button>
                 </form>
             </div>
         </div>
