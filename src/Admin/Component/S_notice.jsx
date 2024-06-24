@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./notice_styles.css";
+import CreateNoticeModal from './CreateNoticeModal';
 
 const formatTime = (isoDate) => {
   const date = new Date(isoDate);
@@ -18,6 +19,11 @@ function S_notice() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredNotices, setFilteredNotices] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     const fetchNoticeData = async () => {
@@ -62,9 +68,11 @@ function S_notice() {
 
   return (
     <div>
-      <div className="create-notice-wrapper">
-        <button>공지 작성하기</button>
-      </div>
+
+      <div>
+        <button onClick={openModal}>공지 작성하기</button>
+        <CreateNoticeModal isOpen={isModalOpen} onClose={closeModal} />
+    </div>
       
       <div className="search-container">
         <input
